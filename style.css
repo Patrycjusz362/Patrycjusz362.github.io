@@ -66,26 +66,4 @@ h1
 {
 	font-size: 50px;
 }
-a:link {
-  color: blue;
-  background-color: transparent;
-  text-decoration: none;
-}
 
-a:visited {
-  color: blue;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: green;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-a:active {
-  color: green;
-  background-color: transparent;
-  text-decoration: underline;
-}
