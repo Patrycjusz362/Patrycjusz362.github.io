@@ -4,7 +4,9 @@
 <meta charset = "UTF-8"/>
 <title>Labirynt</title>
 <style>
-
+img {
+float: left
+}
 body{
 font-size: 27.5px
 }
@@ -20,9 +22,9 @@ String.prototype.replaceAt = function(index, replacement) {
 <script type = "text/javascript">
  var lvl1 = "``````````~`````b````~``````````~````|`|```~``````````~``````````~``````````~``````````~``````````~``````````~";
  var mapa = lvl1;
- var box = "<img src='box.png'  width = '32px'/>";
+ var box = "<img src='box.png'  width = '32px' height='32px'/>";
  var sciana = "<img src='bedrock.png' height='32px'/>";
- var podloga = "<img src='cobble.png' height='32px'";
+ var podloga = "<img src='cobble.png' height='32px'/>";
  var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
  var pozycja_gracza = 0;
  async function wyswietl()
