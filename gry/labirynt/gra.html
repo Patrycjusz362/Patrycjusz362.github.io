@@ -2,15 +2,127 @@
 <html lang = "pl">
 <head>
 <meta charset = "UTF-8"/>
-<script type = "text/javascript">
-  
-  
-  
-  
-  
+<title>Labirynt</title>
+<style>
+img {
+float: left
+}
+body{
+font-size: 27.5px
+}
+</style>
+<script>
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+}
 </script>
 </head>
-<body onload="">
+<body onload="wyswietl()">
+<div id="ekran">wyswietl()</div>
+<script type = "text/javascript">
+ var lvl1 = "``````````~``````````~``````````~````|`|```~``````````~``````````~``````````~``````````~``````````~``````````~";
+ var mapa = lvl1;
+ var sciana = "<img src='https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/08/Bedrock_%28texture%29_JE2_BE2.png/revision/latest/scale-to-width-down/48?cb=20201001115713' height='32px'/>";
+ var podloga = "<img src='https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0c/Cobblestone_%28texture%29_JE6_BE3.png/revision/latest/scale-to-width-down/48?cb=20201001121005' height='32px'/>";
+ var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
+ var pozycja_gracza = 0;
+ async function wyswietl()
+ {
+  var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
+  kopia_mapy = await kopia_mapy.replaceAll('~', "<br>");
+  kopia_mapy = await kopia_mapy.replaceAll('`', podloga);
+  kopia_mapy = await kopia_mapy.replaceAll('^', gracz);
+  document.getElementById("ekran").innerHTML = await kopia_mapy.replaceAll('|', sciana);
+ }
+  
+ 
+ 
+ function gora()
+ {
+	pozycja_gracza = pozycja_gracza-11;
+ if (mapa.charAt(pozycja_gracza)!= '`')
+	{
+		pozycja_gracza= pozycja_gracza+11;
+	}
+	wyswietl();
+ }
+ function dol()
+ {
+ pozycja_gracza = pozycja_gracza+11;
+ if (mapa.charAt(pozycja_gracza)!= '`')
+	{
+		pozycja_gracza= pozycja_gracza-11;
+	}
+	wyswietl();
+ }
+ function prawo()
+ {
+ pozycja_gracza = pozycja_gracza+1;
+ if (mapa.charAt(pozycja_gracza)!= '`')
+	{
+		pozycja_gracza= pozycja_gracza-1;
+	}
+	wyswietl();
+ }
+ function lewo()
+ {
+ pozycja_gracza = pozycja_gracza-1;
+ if (mapa.charAt(pozycja_gracza)!= '`')
+	{
+		pozycja_gracza= pozycja_gracza+1;
+	}
+	wyswietl();
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ document.addEventListener("keydown", function(event) {
+  if (event.keyCode == 87) //w
+  {
+    gora();
+  }
+  if (event.keyCode == 65) //a
+  {
+    lewo();
+  }
+  if (event.keyCode == 83) //s
+  {
+    dol();
+  }
+  if (event.keyCode == 68) //d
+  {
+    prawo();
+  }
+});
+  
 
+
+
+
+
+</script>
 </body>
 </html>
