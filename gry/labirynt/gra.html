@@ -20,15 +20,17 @@ String.prototype.replaceAt = function(index, replacement) {
 <body onload="wyswietl()">
 <div id="ekran">wyswietl()</div>
 <script type = "text/javascript">
- var lvl1 = "``````````~``````````~``````````~````|`|```~``````````~``````````~``````````~``````````~``````````~``````````~";
+ var lvl1 = "``````````~`````b````~``````````~````|`|```~``````````~``````````~``````````~``````````~``````````~``````````~";
  var mapa = lvl1;
- var sciana = "<img src='bedrock.png' height='32px'/>";
- var podloga = "<img src='cobble.png' height='32px'/>";
+ var box = "<img src='https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e6/Oak_Planks_%28texture%29_JE6_BE3.png/revision/latest/scale-to-width-down/48?cb=20201001140156'  width = '32px' height='32px'/>";
+ var sciana = "<img src='https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/08/Bedrock_%28texture%29_JE2_BE2.png/revision/latest/scale-to-width-down/48?cb=20201001115713' height='32px'/>";
+ var podloga = "<img src='https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0c/Cobblestone_%28texture%29_JE6_BE3.png/revision/latest/scale-to-width-down/48?cb=20201001121005' height='32px'/>";
  var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
  var pozycja_gracza = 0;
  async function wyswietl()
  {
   var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
+  kopia_mapy = await kopia_mapy.replaceAll('b', box);
   kopia_mapy = await kopia_mapy.replaceAll('~', "<br>");
   kopia_mapy = await kopia_mapy.replaceAll('`', podloga);
   kopia_mapy = await kopia_mapy.replaceAll('^', gracz);
@@ -36,41 +38,61 @@ String.prototype.replaceAt = function(index, replacement) {
  }
   
  
+ function zmiana_pozycji(ile)
+ {
+ pozycja_gracza = pozycja_gracza+ile;
+ if (mapa.charAt(pozycja_gracza)!= '`')
+	{
+		if (mapa.charAt(pozycja_gracza)!= 'b')
+		{
+			pozycja_gracza= pozycja_gracza-ile;
+		}
+		else 
+		{
+			x=pozycja_gracza+ile;
+			if (mapa.charAt(x)!= '`')
+			{
+			pozycja_gracza= pozycja_gracza-ile;
+			}
+			else
+			{
+			mapa = mapa.replaceAt(pozycja_gracza, '`');
+			x=pozycja_gracza+ile;
+			mapa = mapa.replaceAt(x, 'b');
+			}
+			
+		}
+	}
+ 
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  function gora()
  {
-	pozycja_gracza = pozycja_gracza-11;
- if (mapa.charAt(pozycja_gracza)!= '`')
-	{
-		pozycja_gracza= pozycja_gracza+11;
-	}
+  var x;
+	zmiana_pozycji(-11)
 	wyswietl();
  }
  function dol()
  {
- pozycja_gracza = pozycja_gracza+11;
- if (mapa.charAt(pozycja_gracza)!= '`')
-	{
-		pozycja_gracza= pozycja_gracza-11;
-	}
+	zmiana_pozycji(11)
 	wyswietl();
  }
  function prawo()
  {
- pozycja_gracza = pozycja_gracza+1;
- if (mapa.charAt(pozycja_gracza)!= '`')
-	{
-		pozycja_gracza= pozycja_gracza-1;
-	}
+	zmiana_pozycji(1)
 	wyswietl();
  }
  function lewo()
  {
- pozycja_gracza = pozycja_gracza-1;
- if (mapa.charAt(pozycja_gracza)!= '`')
-	{
-		pozycja_gracza= pozycja_gracza+1;
-	}
+	zmiana_pozycji(-1)
 	wyswietl();
  }
  
