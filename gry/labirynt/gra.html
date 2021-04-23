@@ -2,7 +2,7 @@
 <html lang = "pl">
 <head>
 <meta charset = "UTF-8"/>
-<title>Labirynt</title>
+<title>Sōkoban</title>
 <style>
 img {
 float: left
@@ -17,54 +17,90 @@ String.prototype.replaceAt = function(index, replacement) {
 }
 </script>
 </head>
-<body onload="wyswietl()">
+<body onload="poziom(1)">
 <div id="ekran">wyswietl()</div>
 <script type = "text/javascript">
- var lvl1 = "``````````~`````b````~``````````~````|`|```~`````b````~``````````~``````````~``````````~``````````~``````````~";
- var mapa = lvl1;
+ var rozmiar;
+ var mapa;
+ var poziomka = 1;
  var box = "<img src='box.png'  width = '32px' height='32px'/>";
  var sciana = "<img src='bedrock.png' height='32px'/>";
  var podloga = "<img src='cobble.png' height='32px'/>";
+ var wygrana = "<img src='win.png' height='32px'/>";
  var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
- var pozycja_gracza = 0;
+ var pozycja_gracza = 9;
  async function wyswietl()
  {
   var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
   kopia_mapy = await kopia_mapy.replaceAll('b', box);
+  kopia_mapy = await kopia_mapy.replaceAll('B', box);
   kopia_mapy = await kopia_mapy.replaceAll('~', "<br>");
   kopia_mapy = await kopia_mapy.replaceAll('`', podloga);
   kopia_mapy = await kopia_mapy.replaceAll('^', gracz);
+  kopia_mapy = await kopia_mapy.replaceAll('*', wygrana);
   document.getElementById("ekran").innerHTML = await kopia_mapy.replaceAll('|', sciana);
  }
   
  
  function zmiana_pozycji(ile)
  {
+ var x = 0;
  pozycja_gracza = pozycja_gracza+ile;
- if (mapa.charAt(pozycja_gracza)!= '`')
+ var podloga = mapa.charAt(pozycja_gracza);
+ 
+ if (podloga!= '`'&&podloga!= '*'&&podloga!= 'b'&&podloga!= 'B') //sprawdza czy nie ma ściamy lub pudełka
 	{
-		if (mapa.charAt(pozycja_gracza)!= 'b')
+		pozycja_gracza= pozycja_gracza-ile;
+	}
+	
+	
+	if ((podloga== 'b'||podloga== 'B'))
 		{
-			pozycja_gracza= pozycja_gracza-ile;
-		}
-		else 
-		{
-			x=pozycja_gracza+ile;
-			if (mapa.charAt(x)!= '`')
+		x = pozycja_gracza + ile; 
+		x = mapa.charAt(x); // x= miejsce za pudełkiem
+			if (x != "*"&& x != "`") 
 			{
 			pozycja_gracza= pozycja_gracza-ile;
 			}
-			else
+			else 
 			{
+			switch (podloga)
+			{
+			case 'b':
 			mapa = mapa.replaceAt(pozycja_gracza, '`');
 			x=pozycja_gracza+ile;
+			if (mapa.charAt(x) == "`")
+			{
 			mapa = mapa.replaceAt(x, 'b');
+			}else if (mapa.charAt(x) == "*")
+			{
+			mapa = mapa.replaceAt(x, 'B');
 			}
+			break;
+			case 'B':
+			mapa = mapa.replaceAt(pozycja_gracza, '*');
+			x=pozycja_gracza+ile;
+			if (mapa.charAt(x) == "`")
+			{
+			mapa = mapa.replaceAt(x, 'b');
+			}else if (mapa.charAt(x) == "*")
+			{
+			mapa = mapa.replaceAt(x, 'B');
+			}
+			break;
 			
+			}
+			}
+		
 		}
-	}
- 
- 
+	
+			
+		
+	
+	
+	
+	
+	
  }
  
  
@@ -77,25 +113,50 @@ String.prototype.replaceAt = function(index, replacement) {
  function gora()
  {
   var x;
-	zmiana_pozycji(-11)
+	zmiana_pozycji(-rozmiar);
 	wyswietl();
  }
  function dol()
  {
-	zmiana_pozycji(11)
+	zmiana_pozycji(rozmiar);
 	wyswietl();
  }
  function prawo()
  {
-	zmiana_pozycji(1)
+	zmiana_pozycji(1);
 	wyswietl();
  }
  function lewo()
  {
-	zmiana_pozycji(-1)
+	zmiana_pozycji(-1);
 	wyswietl();
  }
  
+ function poziom(lvl)
+ {
+ switch (lvl)
+ {
+ case 1:
+ mapa = "|||||||~|```|||~|`|b|||~|`b`**|~|||||||";
+ rozmiar = 8;
+ pozycja_gracza = 9;
+ wyswietl();
+ break;
+ case 2:
+ mapa = "||||```||||||||||~||||b``||||||||||~||||``b||||||||||~||``b`b`|||||||||~||`|`||`|||||||||~```|`||`|||||``**~`b``b``````````**~||||`|||`|`||``**~||||`````||||||||~";
+ rozmiar = 18;
+ pozycja_gracza = 136;
+ wyswietl();
+ break;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ }
+ }
  
  
  
@@ -138,6 +199,11 @@ String.prototype.replaceAt = function(index, replacement) {
   {
     prawo();
   }
+  if (!mapa.includes("*"))
+	{
+	poziomka = poziomka+1;
+	poziom(poziomka);
+	}
 });
   
 
