@@ -28,7 +28,8 @@ String.prototype.replaceAt = function(index, replacement) {
  var podloga = "<img src='cobble.png' height='32px'/>";
  var wygrana = "<img src='win.png' height='32px'/>";
  var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
- var pozycja_gracza = 9;
+ var pozycja_gracza;
+ var ruchy;
  async function wyswietl()
  {
   var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
@@ -38,7 +39,8 @@ String.prototype.replaceAt = function(index, replacement) {
   kopia_mapy = await kopia_mapy.replaceAll('`', podloga);
   kopia_mapy = await kopia_mapy.replaceAll('^', gracz);
   kopia_mapy = await kopia_mapy.replaceAll('*', wygrana);
-  document.getElementById("ekran").innerHTML = await kopia_mapy.replaceAll('|', sciana);
+  kopia_mapy = await kopia_mapy.replaceAll('|', sciana);
+  document.getElementById("ekran").innerHTML = await poziomka+"lvl<br>"+kopia_mapy;
  }
   
  
@@ -132,7 +134,7 @@ String.prototype.replaceAt = function(index, replacement) {
 	wyswietl();
  }
  
- function poziom(lvl)
+ function poziom(lvl) //zmienia poziom
  {
  switch (lvl)
  {
@@ -148,11 +150,55 @@ String.prototype.replaceAt = function(index, replacement) {
  pozycja_gracza = 136;
  wyswietl();
  break;
- 
- 
- 
- 
- 
+ case 3:
+ mapa = "|||||||~|*```*|~|*bbb*|~||b`b||~|*bbb*|~|*```*|~|||||||~";
+ rozmiar = 8;
+ pozycja_gracza = 27;
+ wyswietl();
+ break;
+ case 4:
+ mapa = "||||||~|```||~|*bB`|~|``|`|~|````|~||||||~";
+ rozmiar = 7;
+ pozycja_gracza = 8;
+ wyswietl();
+ break;
+ case 5:
+ mapa = "||||||~|`*|||~|``|||~|B```|~|``b`|~|``|||~||||||~";
+ rozmiar = 7;
+ pozycja_gracza = 8;
+ wyswietl();
+ break;
+ case 6:
+ mapa = "||||||||~|*````*|~|BbbbbB|~|*````*|~||||||||~";
+ rozmiar = 9;
+ pozycja_gracza = 13;
+ wyswietl();
+ break;
+ case 7:
+ mapa = "||||||||~|``````|~|`*BBb`|~|``````|~|||||``|~||||||||~";
+ rozmiar = 9;
+ pozycja_gracza = 13;
+ wyswietl();
+ break;
+ case 8:
+ mapa = "||||||~|*``||~|`bb`|~||```|~|||``|~||||*|~||||||~";
+ rozmiar = 7;
+ pozycja_gracza = 15;
+ wyswietl();
+ break;
+ case 9:
+ mapa = "|||||||~|`````|~|`|b|`|~|*``B`|~|```|||~|||||||~";
+ rozmiar = 8 ;
+ pozycja_gracza = 10 ;
+ wyswietl();
+ break;
+ case 10:
+ mapa = "````````````~*```*`*`**`*~*`*`*`*`*`**~`*`*``*`*``*~````````````~";
+ rozmiar = 13;
+ pozycja_gracza = 1;
+ wyswietl();
+ alert("Dziękuję za grę!")
+ break;
  
  
  }
@@ -212,6 +258,7 @@ String.prototype.replaceAt = function(index, replacement) {
 
 
 </script>
-	 <button type="button" onclick="poziom(poziomka)">Reset poziomu</button> 
+	 <br><button type="button" onclick="poziom(poziomka)">Reset poziomu</button> <br>
+	 <button type="button" onclick="">Cofnij ruch (R)</button>
 </body>
 </html>
