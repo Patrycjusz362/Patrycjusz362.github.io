@@ -10,6 +10,9 @@ float: left
 body{
 font-size: 27.5px
 }
+#odstep {
+visibility: hidden
+}
 </style>
 <script>
 String.prototype.replaceAt = function(index, replacement) {
@@ -31,7 +34,7 @@ String.prototype.replaceAt = function(index, replacement) {
  var wygrana = "<img src='win.png' height='32px'/>";
  var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
  var pozycja_gracza;
- var ruchy;
+ var ruchy = [];
  async function wyswietl()
  {
   var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
@@ -45,13 +48,39 @@ String.prototype.replaceAt = function(index, replacement) {
   document.getElementById("ekran").innerHTML = await poziomka+"lvl<br>"+kopia_mapy;
  }
   
+ async function zapis()
+ {
+	await ruchy.push(mapa);
+	await ruchy.push(pozycja_gracza);
+ }
+ 
+ async function wczytaj()
+ {
+ if (ruchy.length > 3)
+ {
+ await ruchy.pop();
+ await ruchy.pop();
+ pozycja_gracza= await ruchy[ruchy.length - 1];
+ await ruchy.pop();
+ mapa = await ruchy[ruchy.length - 1];
+ await ruchy.pop();
+ await wyswietl();
+ }
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  function zmiana_pozycji(ile)
  {
  var x = 0;
  pozycja_gracza = pozycja_gracza+ile;
  var podloga = mapa.charAt(pozycja_gracza);
- 
  if (podloga!= '`'&&podloga!= '*'&&podloga!= 'b'&&podloga!= 'B') //sprawdza czy nie ma ściamy lub pudełka
 	{
 		pozycja_gracza= pozycja_gracza-ile;
@@ -97,8 +126,13 @@ String.prototype.replaceAt = function(index, replacement) {
 			}
 		
 		}
-	
-			
+	if (!mapa.includes("*")) //sprawdza czy poziom został ukonczony
+	{
+	poziomka = poziomka+1;
+	poziom(poziomka);
+	ruchy = [];
+	}
+	zapis();	
 		
 	
 	
@@ -201,9 +235,12 @@ String.prototype.replaceAt = function(index, replacement) {
  wyswietl();
  alert("Dziękuję za grę!")
  break;
- 
- 
  }
+
+ 
+ 
+ 
+ 
  }
  
  
@@ -247,11 +284,10 @@ String.prototype.replaceAt = function(index, replacement) {
   {
     prawo();
   }
-  if (!mapa.includes("*"))
-	{
-	poziomka = poziomka+1;
-	poziom(poziomka);
-	}
+  if (event.keyCode == 82) //r
+  {
+    wczytaj();
+  }
 });
   
 
@@ -261,6 +297,12 @@ String.prototype.replaceAt = function(index, replacement) {
 
 </script>
 	 <br><button type="button" onclick="poziom(poziomka)">Reset poziomu</button> <br>
-	 <button type="button" onclick="">Cofnij ruch (R)</button>
+	 <button type="button" onclick="wczytaj()">Cofnij ruch (R)</button><br>
+	 <button type="button" id="odstep">🡄</button>
+	 <button type="button" onclick="gora()">🡅</button><br>
+	 <button type="button" onclick="lewo()">🡄</button>
+	 <button type="button" onclick="dol()">🡇</button>
+	 <button type="button" onclick="prawo()">🡆</button>
+	 
 </body>
 </html>
