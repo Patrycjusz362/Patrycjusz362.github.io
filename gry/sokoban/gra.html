@@ -18,6 +18,7 @@ font-size: 0px
 visibility: hidden
 }
 </style>
+<script src="poziomy.js"></script> 
 <script>
 String.prototype.replaceAt = function(index, replacement) {
     return this.substr(0, index) + replacement + this.substr(index + replacement.length);
@@ -33,17 +34,18 @@ String.prototype.replaceAt = function(index, replacement) {
  var mapa;
  var poziomka = 1;
  var box = "<img src='box.png'  width = '32px' height='32px'/>";
- var sciana = "<img src='bedrock.png' height='32px'/>";
- var podloga = "<img src='cobble.png' height='32px'/>";
+ var box_ok = "<img src='box_ok.png'  width = '32px' height='32px'/>";
+ var sciana = "<img src='sciana.png' height='32px'/>";
+ var podloga = "<img src='podloga.png' height='32px'/>";
  var wygrana = "<img src='win.png' height='32px'/>";
- var gracz = "<img src='https://i1.sndcdn.com/artworks-000513507990-qeqxsk-t500x500.jpg'  width = '32px' height='32px'/>";
+ var gracz = "<img src='hero.png'  width = '32px' height='32px'/>";
  var pozycja_gracza;
  var ruchy = [];
  async function wyswietl()
  {
   var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
   kopia_mapy = await kopia_mapy.replaceAll('b', box);
-  kopia_mapy = await kopia_mapy.replaceAll('B', box);
+  kopia_mapy = await kopia_mapy.replaceAll('B', box_ok);
   kopia_mapy = await kopia_mapy.replaceAll('~', "<br>");
   kopia_mapy = await kopia_mapy.replaceAll('`', podloga);
   kopia_mapy = await kopia_mapy.replaceAll('^', gracz);
@@ -174,78 +176,7 @@ String.prototype.replaceAt = function(index, replacement) {
 	wyswietl();
  }
  
- function poziom(lvl) //zmienia poziom
- {
- switch (lvl)
- {
- case 1:
- mapa = "|||||||~|```|||~|`|b|||~|`b`**|~|||||||";
- rozmiar = 8;
- pozycja_gracza = 9;
- wyswietl();
- break;
- case 2:
- mapa = "||||```||||||||||~||||b``||||||||||~||||``b||||||||||~||``b`b`|||||||||~||`|`||`|||||||||~```|`||`|||||``**~`b``b``````````**~||||`|||`|`||``**~||||`````||||||||~";
- rozmiar = 18;
- pozycja_gracza = 136;
- wyswietl();
- break;
- case 3:
- mapa = "|||||||~|*```*|~|*bbb*|~||b`b||~|*bbb*|~|*```*|~|||||||~";
- rozmiar = 8;
- pozycja_gracza = 27;
- wyswietl();
- break;
- case 4:
- mapa = "||||||~|```||~|*bB`|~|``|`|~|````|~||||||~";
- rozmiar = 7;
- pozycja_gracza = 8;
- wyswietl();
- break;
- case 5:
- mapa = "||||||~|`*|||~|``|||~|B```|~|``b`|~|``|||~||||||~";
- rozmiar = 7;
- pozycja_gracza = 8;
- wyswietl();
- break;
- case 6:
- mapa = "||||||||~|*````*|~|BbbbbB|~|*````*|~||||||||~";
- rozmiar = 9;
- pozycja_gracza = 13;
- wyswietl();
- break;
- case 7:
- mapa = "||||||||~|``````|~|`*BBb`|~|``````|~|||||``|~||||||||~";
- rozmiar = 9;
- pozycja_gracza = 13;
- wyswietl();
- break;
- case 8:
- mapa = "||||||~|*``||~|`bb`|~||```|~|||``|~||||*|~||||||~";
- rozmiar = 7;
- pozycja_gracza = 15;
- wyswietl();
- break;
- case 9:
- mapa = "|||||||~|`````|~|`|b|`|~|*``B`|~|```|||~|||||||~";
- rozmiar = 8 ;
- pozycja_gracza = 10 ;
- wyswietl();
- break;
- case 10:
- mapa = "````````````~*```*`*`**`*~*`*`*`*`*`**~`*`*``*`*``*~````````````~";
- rozmiar = 13;
- pozycja_gracza = 1;
- wyswietl();
- alert("Dziękuję za grę!")
- break;
- }
-
  
- 
- 
- 
- }
  
  
  
