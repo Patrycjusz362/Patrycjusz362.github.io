@@ -1,0 +1,96 @@
+<!DOCTPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML</title>
+	</head>
+<body onload='napisz()'>
+<script type="text/javascript">
+function napisz()
+{
+red =document.getElementById("red").checked;
+blue =document.getElementById("blue").checked;
+led =document.getElementById("led").checked;
+star =document.getElementById("star").checked;
+
+if (red == false && blue == false && led == false && star == false){
+    p.style.display = "block";
+  }
+else if (red == false && blue == false && led == false && star == true){
+    p.style.display = "block";
+  }
+else if (red == true && blue == false && led == false && star == true){
+    p.style.display = "block";
+  }
+else {
+    p.style.display = "none";
+  }
+if (red == false && blue == false && led == true && star == false){
+    n.style.display = "block";
+  }
+else if (red == true && blue == true && led == true && star == true){
+    n.style.display = "block";
+  }
+else if (red == false && blue == true && led == false && star == true){
+    n.style.display = "block";
+  }
+else {
+    n.style.display = "none";
+  }
+if (red == false && blue == true && led == false && star == false){
+    s.style.display = "block";
+  }
+else if (red == true && blue == false && led == false && star == false){
+    s.style.display = "block";
+  }
+else if (red == true && blue == true && led == false && star == false){
+    s.style.display = "block";
+  }
+  else if (red == true && blue == true && led == true && star == false){
+    s.style.display = "block";
+  }
+else {
+    s.style.display = "none";
+  }
+if (red == false && blue == true && led == true && star == false){
+    r.style.display = "block";
+  }
+else if (red == true && blue == true && led == false && star == true){
+    r.style.display = "block";
+  }
+else if (red == false && blue == true && led == true && star == true){
+    r.style.display = "block";
+  }
+else {
+    r.style.display = "none";
+  }
+if (red == true && blue == false && led == true && star == false){
+    b.style.display = "block";
+  }
+else if (red == true && blue == false && led == true && star == true){
+    b.style.display = "block";
+  }
+else if (red == false && blue == false && led == true && star == true){
+    b.style.display = "block";
+  }
+else {
+    b.style.display = "none";
+  }
+}
+</script>
+
+<form>
+jaki jest kabel?<br>
+czerwony<input type="checkbox" id='red' onclick='napisz()'/><br>
+niebieski<input type="checkbox" id='blue' onclick='napisz()'/><br>
+led<input type="checkbox" id='led' onclick='napisz()'/><br>
+gwiazda<input type="checkbox" id='star' onclick='napisz()'/><br>
+</form>
+<p id="p" style="display:none">P</p>
+<p id="n" style="display:none">N</p>
+<p id="b" style="display:none">B</p>
+<p id="r" style="display:none">R</p>
+<p id="s" style="display:none">S</p>
+
+</body>
+</html>
