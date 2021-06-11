@@ -5,38 +5,42 @@
 	<title>HTML</title>
 	</head>
 	<script>
-	
-	
-	
-	
-	
-	
+	var teraz_uzywana_karta = 'karta_zwylke_kable';
+	function wlacz(x){ 
+	var element = document.getElementById(x);
+	if (x!=teraz_uzywana_karta) {
+	element.removeAttribute("hidden");
+	element = document.getElementById(teraz_uzywana_karta);
+	element.setAttribute("hidden", '');
+	teraz_uzywana_karta = x;
+	}
+	}
 	</script>
 <body onload='napisz()'>
-<table border="3px">
+<table border="1px">
 <tr>
-<th>Zwykłe kable</th>
-<th>Przycisk</th>
-<th>Znaczki</th>
-<th>Simon mówi</th>
-<th>Kto na pierwszym<br>(dziwne wyrazy)</th>
-<th>Pamięć</th>
-<th>Alfabet morsea</th>
-<th>skomplikowane przewody</th>
-<th>sekwencyjne przewody</th>
-<th>labirynt</th>
-<th>Hasło</th>
+<th onclick="wlacz('karta_zwylke_kable')">Zwykłe kable</th>
+<th onclick="wlacz('karta_przycisk')">Przycisk</th>
+<th onclick="wlacz('karta_znaczki')">Znaczki</th>
+<th onclick="wlacz('karta_simon')">Simon mówi</th>
+<th onclick="wlacz('karta_kto_na_pierwszym')">Kto na pierwszym<br>(dziwne wyrazy)</th>
+<th onclick="wlacz('karta_pamiec')">Pamięć</th>
+<th onclick="wlacz('karta_morse')">Alfabet morsea</th>
+<th onclick="wlacz('karta_skomplikowane')">skomplikowane przewody</th>
+<th onclick="wlacz('karta_sekwencyjne')">sekwencyjne przewody</th>
+<th onclick="wlacz('karta_labirynt')">labirynt</th>
+<th onclick="wlacz('karta_haslo')" onclick="szukaj()">Hasło</th>
 </tr>
 <tr>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th colspan='11' id="karta_zwylke_kable">kabelki</th>
+<th colspan='11' id="karta_przycisk" hidden>przycisk</th>
+<th colspan='11' id="karta_znaczki" hidden>znaczki</th>
+<th colspan='11' id="karta_simon" hidden>simon</th>
+<th colspan='11' id="karta_kto_na_pierwszym" hidden>nwm</th>
+<th colspan='11' id="karta_pamiec" hidden>pamiec</th>
+<th colspan='11' id="karta_morse" hidden>mors</th>
 
-<th>
+<th colspan='11' id="karta_skomplikowane" hidden>
 <script type="text/javascript">
 function napisz()
 {
@@ -124,9 +128,9 @@ gwiazda<input type="checkbox" id='star' onclick='napisz()'/><br>
 <p id="r" style="display:none">R - jeśli jest port równoległy</p>
 <p id="s" style="display:none">S - ostatnia cyfra jest <b>PARZYSTA</b></p>
 </th>
-<th></th>
-<th></th>
-<th>
+<th colspan='11' id="karta_sekwencyjne" hidden>sekwencyjne</th>
+<th colspan='11' id="karta_labirynt" hidden>labirynt</th>
+<th colspan='11' id="karta_haslo" hidden>
 <script type="text/javascript">
 var wyrazy = ['alarm', 'apacz', 'arena', 'babka', 'cecha', 'ekipa', 'fajka', 'farma', 'głowa', 'hańba', 'larwa', 'laska', 'macka', 'obiad', 'palec', 'palma', 'pegaz', 'robak', 'scena', 'skrót', 'smoła', 'smycz', 'tafla', 'teren', 'toast', 'torba', 'trasa', 'twarz', 'walka', 'wełna', 'wnęka', 'zakaz', 'zwiad', 'znicz', 'żniwa' ];
 
