@@ -15,8 +15,12 @@
 	teraz_uzywana_karta = x;
 	}
 	}
+	function start() {
+	napisz();
+	szukaj();
+	}
 	</script>
-<body onload='napisz()'>
+<body onload='start()'>
 <table border="1px">
 <tr>
 <th onclick="wlacz('karta_zwylke_kable')">Zwykłe kable</th>
@@ -29,7 +33,7 @@
 <th onclick="wlacz('karta_skomplikowane')">skomplikowane przewody</th>
 <th onclick="wlacz('karta_sekwencyjne')">sekwencyjne przewody</th>
 <th onclick="wlacz('karta_labirynt')">labirynt</th>
-<th onclick="wlacz('karta_haslo')" onclick="szukaj()">Hasło</th>
+<th onclick="wlacz('karta_haslo')">Hasło</th>
 </tr>
 <tr>
 <th colspan='11' id="karta_zwylke_kable">kabelki</th>
@@ -202,7 +206,7 @@ Trzecia litera:
 <input type="reset" onmousemove='szukaj()'>
 </form>
 Proponowane wyrazy:
-<p Id='slowa'>pusto :(</p>
+<p Id='slowa'>Pusto :(</p>
 </th>
 </tr>
 </table>
