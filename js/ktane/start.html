@@ -4,7 +4,39 @@
 	<meta charset="UTF-8">
 	<title>HTML</title>
 	</head>
+	<script>
+	
+	
+	
+	
+	
+	
+	</script>
 <body onload='napisz()'>
+<table border="3px">
+<tr>
+<th>Zwykłe kable</th>
+<th>Przycisk</th>
+<th>Znaczki</th>
+<th>Simon mówi</th>
+<th>Kto na pierwszym<br>(dziwne wyrazy)</th>
+<th>Pamięć</th>
+<th>Alfabet morsea</th>
+<th>skomplikowane przewody</th>
+<th>sekwencyjne przewody</th>
+<th>labirynt</th>
+<th>Hasło</th>
+</tr>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+
+<th>
 <script type="text/javascript">
 function napisz()
 {
@@ -79,7 +111,7 @@ else {
 }
 </script>
 
-<form>
+<form name="skomplikowane_przewody">
 jaki jest kabel?<br>
 czerwony<input type="checkbox" id='red' onclick='napisz()'/><br>
 niebieski<input type="checkbox" id='blue' onclick='napisz()'/><br>
@@ -91,6 +123,85 @@ gwiazda<input type="checkbox" id='star' onclick='napisz()'/><br>
 <p id="b" style="display:none">B - jeśli 2 lub wiecej baterii</p>
 <p id="r" style="display:none">R - jeśli jest port równoległy</p>
 <p id="s" style="display:none">S - ostatnia cyfra jest <b>PARZYSTA</b></p>
+</th>
+<th></th>
+<th></th>
+<th>
+<script type="text/javascript">
+var wyrazy = ['alarm', 'apacz', 'arena', 'babka', 'cecha', 'ekipa', 'fajka', 'farma', 'głowa', 'hańba', 'larwa', 'laska', 'macka', 'obiad', 'palec', 'palma', 'pegaz', 'robak', 'scena', 'skrót', 'smoła', 'smycz', 'tafla', 'teren', 'toast', 'torba', 'trasa', 'twarz', 'walka', 'wełna', 'wnęka', 'zakaz', 'zwiad', 'znicz', 'żniwa' ];
+
+function szukaj() {
+var pierwsza_cyfra = document.wyraz.pierwsza.value;
+var druga_cyfra = document.wyraz.druga.value;
+var trzecia_cyfra = document.wyraz.trzecia.value;
+var wybrane = "";
+
+for (var j = 0; j < 35; j++){
+if (pierwsza_cyfra == "") {
+wybrane= wybrane + '<br>' +wyrazy[j];
+}else {
+for (var i = 0; i < 5; i++) {
+if (pierwsza_cyfra.charAt(i) == wyrazy[j].charAt(0)){
+
+if (druga_cyfra == "") {
+
+wybrane= wybrane + '<br>' +wyrazy[j];
+}else {
+
+for (var g = 0; g < 5; g++) {
+if (druga_cyfra.charAt(g) == wyrazy[j].charAt(1)){
+
+if (trzecia_cyfra == ""){
+
+wybrane= wybrane + '<br>' +wyrazy[j];
+}else 
+
+for (var h = 0; h < 5; h++) {
+if (trzecia_cyfra.charAt(h) == wyrazy[j].charAt(2)){
+
+wybrane= wybrane + '<br>' +wyrazy[j];
+
+}}}}}}}}}
+document.getElementById('slowa').innerHTML = wybrane;
+
+}
+
+</script>
+
+<form name='wyraz'>
+<table>
+<tr>
+<th>
+Pierwsza litera:
+</th>
+<th>
+<input type='text' onkeyup='szukaj()' maxlength='5' name='pierwsza'>
+</th>
+</tr>
+<tr>
+<th>
+Druga litera:
+</th>
+<th>
+<input type='text' onkeyup='szukaj()' maxlength='5' name='druga'>
+</th>
+</tr>
+<tr>
+<th>
+Trzecia litera:
+</th>
+<th>
+<input type='text' onkeyup='szukaj()' maxlength='5' name='trzecia'>
+</th>
+</tr>
+</table>
+<input type="reset" onmousemove='szukaj()'>
+</form>
+Proponowane wyrazy:
+<p Id='slowa'>pusto :(</p>
+</th>
+</tr>
+</table>
 
 </body>
 </html>
