@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>Connect 4</title>
+<script>
+var plansza = [
+" "," "," "," "," "," "," "," "," ",
+" "," "," "," "," "," "," "," "," ",
+" "," "," "," "," "," "," "," "," ",
+" "," "," "," "," "," "," "," "," ",
+" "," "," "," "," "," "," "," "," ",
+" "," "," "," "," "," "," "," "," ",
+];
+var kolej = "R"; // kogo jest kolej
+function start()
+{
+narysuj();
+
+
+
+}
+function narysuj()
+{
+//czyszczenie strony
+document.open();
+document.close();
+
+
+//zmienne
+let x=""; // tabela
+let pole=0; // aktualnie wybane pole
+
+x=x+"<table border='1px'> "; 
+
+//przyciski
+x=x+"<tr> <th width='20px' height='20px'><button type='button' onClick='przycisk(45)'>1</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(46)'>2</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(47)'>3</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(48)'>4</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(49)'>5</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(50)'>6</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(51)'>7</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(52)'>8</button> </th>";
+x=x+" <th width='20px' height='20px'><button type='button' onClick='przycisk(53)'>9</button> </th>";
+x=x+"</tr>"
+
+
+for (let i=1; i<7; i++)//generowanie ciałka tabeli
+{
+x=x+"<tr>"
+
+for (let j=0; j<9; j++){
+
+if (plansza[pole] == " ") 
+{
+x=x+"<th width='20px' height='20px'></th>" 
+}else if (plansza[pole] == "B")
+{
+x=x+"<th width='20px' height='20px' bgcolor='blue'></th>" 
+}else if (plansza[pole] == "R")
+{
+x=x+"<th width='20px' height='20px' bgcolor='red'></th>" 
+}
+pole++;
+}
+x=x+"</tr>"
+};
+
+x=x+"</table>"
+document.write(x);
+}
+
+function przycisk(kolumna)
+{
+const x = kolumna;
+
+if (plansza[x-45] == " ") //sprawdza czy jest miejsce w kolumnie
+{
+ let komorka = x;
+ for (let j=0; j<6; j++)
+ {
+	if (plansza[komorka] == " ")
+	{
+	plansza[komorka] = kolej; 
+	narysuj();
+	
+	wygrana(kolej)
+	if (kolej== "R")
+ {
+ kolej="B"
+ }else
+ {
+ kolej="R"; 
+ }
+
+	return;
+	}else
+	{
+	komorka = komorka - 9;
+	}	
+ }
+ 
+}else
+{
+alert("zajęte");
+}
+
+}
+
+function wygrana(kto)//sprawdza czy ktoś wygral
+{
+for (let i=0; i<53; i++)
+if (plansza[i] != " ")
+{
+	if (plansza[i] == plansza[i+1] && plansza[i] == plansza[i+2] && plansza[i] == plansza[i+3])
+	{
+	alert("wygrał "+ kto);
+	}else if (plansza[i] == plansza[i+10] && plansza[i] == plansza[i+20] && plansza[i] == plansza[i+30])
+	{
+	alert("wygrał "+ kto);
+	}else if (plansza[i] == plansza[i+9] && plansza[i] == plansza[i+18] && plansza[i] == plansza[i+27])
+	{
+	alert("wygrał "+ kto);
+	}else if (plansza[i] == plansza[i-8] && plansza[i] == plansza[i-16] && plansza[i] == plansza[i-24])
+	{
+	alert("wygrał "+ kto);
+	}
+}
+}
+
+</script>
+</head>
+<body onload="start()"> 
+
+</body>
+</html>
