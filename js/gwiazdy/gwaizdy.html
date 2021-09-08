@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>tytul</title>
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: gray;
+}
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+table {
+	position:fixed;
+	background-color: coal;
+	color: black;
+	
+}
+</style>
+</head>
+<body>
+<canvas id="canvas1"></canvas>
+<table border="2px">
+<tr>
+<td>
+Rozmiar
+</td><td>
+<input type="range" min="10" max="200" value="50" class="slider" id="Promien">
+</td><td>
+<p id="promienWartosc"></p>
+</td>
+</tr>
+
+<tr>
+<td>
+Ramiona
+</td><td>
+<input type="range" min="0" max="1" value="0.5" class="slider" id="Ramionka" step="0.01">
+</td><td>
+<p id="RamionkaWartosc"></p>
+</td>
+</tr>
+
+
+<tr>
+<td>
+Ilość ramion
+</td><td>
+<input type="range" min="1" max="30" value="5" class="slider" id="Ilosc" step="1">
+</td><td>
+<p id="IloscWartosc"></p>
+</td>
+</tr>
+
+<tr>
+<td>
+Obrót
+</td><td>
+<input type="range" min="0" max="1" value="0.1" class="slider" id="Obrot" step="0.01">
+</td><td>
+<p id="ObrotWartosc"></p>
+</td>
+</tr>
+
+<tr>
+<td>
+Kolory
+</td><td>
+<input type="color" id="kolortla"><input type="color" id="kolorramki">
+</td><td>
+<button type="button" onClick="TeczaOn()">Tęcza</button>
+</td>
+</tr>
+
+</table>
+<script type="text/javascript" src='./script.js'></script> <!--musi być po aby go złapało-->
+</body>
+</html>
