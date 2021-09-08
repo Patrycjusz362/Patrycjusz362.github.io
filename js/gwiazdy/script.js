@@ -156,7 +156,7 @@ window.addEventListener('mouseup', function(event){
 	czyRysowac = false;
 });
 
-window.addEventListener('touch', function(event){
+window.addEventListener('touchmove', function(event){
 	
 		
 		hue++;
