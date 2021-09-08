@@ -22,7 +22,10 @@ ctx.lineWidth = 2;   //grubość linii
 //ctx.globalCompositeOperation = "lighter"; //mieszanie kolorów
 
 
-
+if (window.innerHeight >=window.innerWidth){
+	alert("Nie działa na telefonach");
+	
+}
 
 
 var sliderPromien = document.getElementById("Promien");
@@ -156,21 +159,6 @@ window.addEventListener('mouseup', function(event){
 	czyRysowac = false;
 });
 
-window.addEventListener('touchmove', function(event){
-	
-		
-		hue++;
-		
-		ctx.save();
-		ctx.translate(event.x,event.y);
-		ctx.rotate(ustawienie);
-		ustawienie=ustawienie + parseFloat(obrot);
-		
-		
-	rysuj(0,0,rozmiar, rozmiarRamion, ramiona);
-	ctx.restore();
-	
-});
 
 
 
