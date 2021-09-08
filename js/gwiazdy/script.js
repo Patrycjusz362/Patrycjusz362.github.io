@@ -11,7 +11,7 @@ var obrot = 0.2;
 var ustawienie=0;
 var tecza = true;
 //ctx.fillStyle="blue"; //wypełnienie
-ctx.lineWidth = 5;   //grubość linii
+ctx.lineWidth = 2;   //grubość linii
 //ctx.strokeStyle = "green"; // kolor linii
 //ctx.shadowOffsetX = 10; 	//ułożenie cienia
 //ctx.shadowOffsety = 10; 
@@ -156,7 +156,21 @@ window.addEventListener('mouseup', function(event){
 	czyRysowac = false;
 });
 
-
+window.addEventListener('touch', function(event){
+	
+		
+		hue++;
+		
+		ctx.save();
+		ctx.translate(event.x,event.y);
+		ctx.rotate(ustawienie);
+		ustawienie=ustawienie + parseFloat(obrot);
+		
+		
+	rysuj(0,0,rozmiar, rozmiarRamion, ramiona);
+	ctx.restore();
+	
+});
 
 
 
