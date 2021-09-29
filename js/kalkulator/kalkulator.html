@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>Kalkulator</title>
+<script type="text/javascript" src='./script.js'></script>
+<style>
+body{
+background-color:black;
+font-size: 90px;
+text-align:center;
+}
+#obudowa{
+margin:auto;
+width:400px;
+height:500px;
+background-color:#10113b;
+border-radius: 20px;
+}
+#ekran{
+width:400px;
+height:100px;
+background-color:gray;
+border-radius: 20px;
+font-size: 80px;
+text-align:right;
+color:yellow;
+}
+.przycisk{
+width:100px;
+height:100px;
+background-color:lightgray;
+float:left;
+border-radius: 40px;
+user-select: none;
+}
+</style>
+</head>
+<body>
+
+<div id="obudowa">
+
+<div id="ekran">0</div>
+
+<div class="przycisk" onClick="przycisk(1)">1</div>
+<div class="przycisk" onClick="przycisk(2)">2</div>
+<div class="przycisk" onClick="przycisk(3)">3</div>
+<div class="przycisk" onClick="przycisk('+')">+</div>
+<div class="przycisk" onClick="przycisk(4)">4</div>
+<div class="przycisk" onClick="przycisk(5)">5</div>
+<div class="przycisk" onClick="przycisk(6)">6</div>
+<div class="przycisk" onClick="przycisk('-')">-</div>
+<div class="przycisk" onClick="przycisk(7)">7</div>
+<div class="przycisk" onClick="przycisk(8)">8</div>
+<div class="przycisk" onClick="przycisk(9)">9</div>
+<div class="przycisk" onClick="przycisk('/')">/</div>
+<div class="przycisk" onClick="przycisk(0)">0</div>
+<div class="przycisk" onClick="przycisk('.')">.</div>
+<div class="przycisk" onClick="przycisk('=')">=</div>
+<div class="przycisk" onClick="przycisk('*')">*</div>
+
+
+
+</div>
+</body>
+</html>
