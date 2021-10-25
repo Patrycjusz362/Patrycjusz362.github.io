@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8"/>
+
+<title>Snake</title>
+<style>
+body{
+background-color: gray;
+font-size: 16px;
+}
+div {
+margin: 0px;
+padding: 0px;
+height:20px;
+width:20px;
+float: left; 
+}
+.waz {
+background-color:green;
+}
+.jablko {
+background-color:red;
+}
+.tlo {
+background-color:black;
+}
+#odstep {
+visibility: hidden
+}
+</style>
+<script type="text/javascript" src='./script.js'></script>
+
+</head>
+<body onkeypress="return myKeyPress(event)">
+<p id="mapa"></p>
+<h1 id= "score"></h1>
+<button onclick="start()" id="button">Zacznij</button><br>
+<button type="button" id="odstep">🡄</button>
+	 <button type="button" onclick="zmienkirunek('w')">🡅</button><br>
+	 <button type="button" onclick="zmienkirunek('a')">🡄</button>
+	 <button type="button" onclick="zmienkirunek('s')">🡇</button>
+	 <button type="button" onclick="zmienkirunek('d')">🡆</button>
+</body>
+</html>
