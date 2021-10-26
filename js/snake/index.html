@@ -45,8 +45,8 @@ text-align: center;
 background-color: pink;
 }
 #telefon{
-width: 300pt; 
-height: 300pt;
+width: 350pt; 
+height: 350pt;
 clear:both;
 }
 </style>
@@ -69,15 +69,18 @@ Szybkość:<br>
 </form>
 <h1 id= "score"></h1>
 <div id="telefon">
-
-
-<div class="przycisk" onclick="zmienkirunek('w')" style="margin: 0px 100pt;">w</div>
-<div class="przycisk" onclick="zmienkirunek('a')" style="float:left;">a</div>
-<div class="przycisk" style="float:left;">.</div>
-<div class="przycisk" onclick="zmienkirunek('d')" style="float:left;">d</div>
-<div class="przycisk" onclick="zmienkirunek('s')" style="float:left; margin: 0px 100pt;">s</div><br>
+<button type="button" id="odstep" class="przycisk">🡄</button>
+	 <button type="button" onclick="zmienkirunek('w')" class="przycisk">🡅</button><br>
+	 <button type="button" onclick="zmienkirunek('a')" class="przycisk">🡄</button>
+	 <button type="button" id="odstep" class="przycisk">.</button>
+	 <button type="button" onclick="zmienkirunek('d')" class="przycisk">🡆</button><br>
+	  <button type="button" id="odstep" class="przycisk">.</button>
+	 <button type="button" onclick="zmienkirunek('s')" class="przycisk">🡇</button>
+	 
+	 
 
  </div>
 
+	
 </body>
 </html>
