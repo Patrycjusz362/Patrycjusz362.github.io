@@ -9,37 +9,75 @@ body{
 background-color: gray;
 font-size: 16px;
 }
-div {
+
+.waz {
+background-color:green;
 margin: 0px;
 padding: 0px;
 height:20px;
 width:20px;
 float: left; 
 }
-.waz {
-background-color:green;
-}
 .jablko {
 background-color:red;
+margin: 0px;
+padding: 0px;
+height:20px;
+width:20px;
+float: left; 
 }
 .tlo {
 background-color:black;
+margin: 0px;
+padding: 0px;
+height:20px;
+width:20px;
+float: left; 
 }
 #odstep {
-visibility: hidden
+visibility: hidden;
+}
+.przycisk {
+width: 100pt; 
+height: 100pt; 
+line-height: 100pt;
+text-align: center;
+background-color: pink;
+}
+#telefon{
+width: 300pt; 
+height: 300pt;
+clear:both;
 }
 </style>
 <script type="text/javascript" src='./script.js'></script>
 
 </head>
 <body onkeypress="return myKeyPress(event)">
-<p id="mapa"></p>
+<div id="mapa"></div>
+
+<button onclick="start()" class="znika">Zacznij</button><br>
+<form autocomplete="off" class="znika">
+Rozmiar planszy:<br>
+x: <input type="range" id="x" min="5" max="50" step="1" value="10" oninput="this.nextElementSibling.value = this.value"/><output>10</output><br>
+y: <input type="range" id="y" min="5" max="50" step="1" value="10" oninput="this.nextElementSibling.value = this.value"/><output>10</output><br>
+
+Szybkość:<br>
+<input type="range" id="y" min="5" max="50" step="1" value="25" oninput="this.nextElementSibling.value = this.value"/><output>25</output><br>
+
+
+</form>
 <h1 id= "score"></h1>
-<button onclick="start()" id="button">Zacznij</button><br>
-<button type="button" id="odstep">🡄</button>
-	 <button type="button" onclick="zmienkirunek('w')">🡅</button><br>
-	 <button type="button" onclick="zmienkirunek('a')">🡄</button>
-	 <button type="button" onclick="zmienkirunek('s')">🡇</button>
-	 <button type="button" onclick="zmienkirunek('d')">🡆</button>
+<div id="telefon">
+
+
+<div class="przycisk" onclick="zmienkirunek('w')" style="margin: 0px 100pt;">w</div>
+<div class="przycisk" onclick="zmienkirunek('a')" style="float:left;">a</div>
+<div class="przycisk" style="float:left;">.</div>
+<div class="przycisk" onclick="zmienkirunek('d')" style="float:left;">d</div>
+<div class="przycisk" onclick="zmienkirunek('s')" style="float:left; margin: 0px 100pt;">s</div><br>
+
+ </div>
+
 </body>
 </html>

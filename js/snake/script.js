@@ -12,7 +12,11 @@ var speed = ustawienie_speed;
 
 
 function start(){
-document.getElementById("button").style.visibility = "hidden";
+var doUsuniecia = document.getElementsByClassName("znika");
+for(let i = 0; i < doUsuniecia.length; i++) {
+    doUsuniecia[i].style.display = "none";
+  }
+
 wymiar_x = 20;
 wymiar_y = 20;
 mapa=[];
@@ -100,7 +104,7 @@ function rysuj(){
 	let wynik="";
 	for (let j=0; j<wymiar_y; j++){
 		
-		wynik+="<div style='clear:both;' ></div>";
+		wynik+="<div style='clear:both;'></div>";
 	for (let i=0; i<wymiar_x; i++){
 		let x=i+(j*wymiar_x);
 		
