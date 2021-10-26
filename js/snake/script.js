@@ -17,14 +17,14 @@ for(let i = 0; i < doUsuniecia.length; i++) {
     doUsuniecia[i].style.display = "none";
   }
 
-wymiar_x = 20;
-wymiar_y = 20;
+wymiar_x = parseInt(document.getElementById("x").value);
+wymiar_y = parseInt(document.getElementById("y").value);
 mapa=[];
 pozycjaGracza=parseInt((wymiar_x/4)+((wymiar_y*wymiar_x)/2));
 
-kierunek = "d";
+kierunek = "s";
 dlugosc=4;
-ustawienie_speed = 5;
+ustawienie_speed = document.getElementById("speed").value;
 speed = ustawienie_speed;
 
 for (let j=0; j<wymiar_y*wymiar_x; j++){
@@ -49,13 +49,13 @@ function ruch(){
 		
 	switch(kierunek){
 		case "w":
-		pozycjaGracza=pozycjaGracza-wymiar_x;
+		pozycjaGracza-=wymiar_x;
 			break;
 		case "a":
 		pozycjaGracza=pozycjaGracza-1;
 			break;
 		case "s":
-		pozycjaGracza=pozycjaGracza+wymiar_x;
+		pozycjaGracza+=wymiar_x;
 			break;
 		case "d":
 		pozycjaGracza=pozycjaGracza+1;
@@ -66,10 +66,7 @@ function ruch(){
 		dlugosc++;
 		mapa[pozycjaGracza]=dlugosc;
 		pozycjaJablka=losuj();
-		return "jablko";
-	}
-	
-	if (mapa[pozycjaGracza]==0){
+	}else if (mapa[pozycjaGracza]==0){
 		
 		for (let i=0; i<mapa.length;i++ ){
 			if (mapa[i]!=0){
@@ -81,17 +78,19 @@ function ruch(){
 		
 		if ((pozycjaGracza%wymiar_x==0)&&(pozycjaGracza!=0)&&(kierunek=="d")){
 		
-		alert("ded");
-		return "ded";		
+		przegrana();
+			
 		}else if ((pozycjaGracza%wymiar_x==wymiar_x-1)&&(kierunek=="a")){
 			
-				alert("ded");
-		return "ded";	
+		przegrana();
+			
 				
 			}
 		
 		
-	}else {alert("ded");}
+	}else {
+		przegrana();
+	}
 	speed=ustawienie_speed;
 	}else{
 		speed--;
@@ -125,7 +124,12 @@ function rysuj(){
 
 
 function losuj(){
-	return Math.floor(Math.random() * mapa.length);
+	let losowa_cyfra;
+	do {
+	losowa_cyfra = Math.floor(Math.random() * mapa.length)	
+	}while (mapa[losowa_cyfra]!=0)
+	
+	return losowa_cyfra;
 }
 
 
@@ -139,14 +143,18 @@ function myKeyPress(e){
     keynum = e.which;
   }
 
-  zmienkirunek(String.fromCharCode(keynum))
+  zmienkierunek(String.fromCharCode(keynum));
 
 
 }
 
+async function przegrana(){
+	await console.log("Przegrana");
+	await confirm("Przegrałeś");
+	await location.reload();
+}
 
-
-function zmienkirunek(przycisk){
+function zmienkierunek(przycisk){
 	
 	
   if ((przycisk =="w")&&(kierunek!="s")){
