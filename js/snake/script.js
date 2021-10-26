@@ -22,7 +22,7 @@ wymiar_y = parseInt(document.getElementById("y").value);
 mapa=[];
 pozycjaGracza=parseInt((wymiar_x/4)+((wymiar_y*wymiar_x)/2));
 
-kierunek = "s";
+kierunek = "d";
 dlugosc=4;
 ustawienie_speed = document.getElementById("speed").value;
 speed = ustawienie_speed;
@@ -143,18 +143,18 @@ function myKeyPress(e){
     keynum = e.which;
   }
 
-  zmienkierunek(String.fromCharCode(keynum));
+  zmienkirunek(String.fromCharCode(keynum));
 
 
 }
 
-async function przegrana(){
-	await console.log("Przegrana");
-	await confirm("Przegrałeś");
-	await location.reload();
+function przegrana(){
+	console.log("Przegrana");
+	confirm("Przegrałeś");
+	location.reload();
 }
 
-function zmienkierunek(przycisk){
+function zmienkirunek(przycisk){
 	
 	
   if ((przycisk =="w")&&(kierunek!="s")){
