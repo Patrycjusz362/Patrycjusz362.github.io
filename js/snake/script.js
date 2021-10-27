@@ -24,7 +24,7 @@ pozycjaGracza=parseInt((wymiar_x/4)+((wymiar_y*wymiar_x)/2));
 
 kierunek = "d";
 dlugosc=4;
-ustawienie_speed = document.getElementById("speed").value;
+ustawienie_speed = document.getElementById("speed").value * 4;
 speed = ustawienie_speed;
 
 for (let j=0; j<wymiar_y*wymiar_x; j++){
@@ -35,12 +35,15 @@ pozycjaJablka=losuj();
 	gra();
 }
 
+if (window.height>window.width){
+	documen.getElementById("telefon").style
+}
 
 
 function gra(){
 	ruch();
 	rysuj();
-	setTimeout(gra, 10);
+	setTimeout(gra, 1);
 }
 
 function ruch(){
