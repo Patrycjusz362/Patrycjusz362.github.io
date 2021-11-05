@@ -1,95 +1,124 @@
 <!DOCTYPE html>
-<html lang = "pl">
-<head>
-<meta charset = "UTF-8"/>
-<link rel="stylesheet" href="style.css">
-  <style>
-   #text
-    {
-    width: 100%;
-	height: 200%;
-    }
-   .okienko
-    {
-    width: 100%;
-    float: up;
-    }
-   .opisgierki
-    {
-    width: 59%;
-    float: right;
-    }
-  </style>
-</head>
-<body onload="">
-<div id = "box">
+<html lang="pl">
+<title>Stronka</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-coffee {font-size:200px}
+</style>
+<body>
 
-<div id = "top"><h1><br>Tu znajdziesz gry stoworzone przezemnie</h1></div>
-<div id = "przerwa"></div>
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-indigo w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="https://patrycjusz362.github.io/" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="https://patrycjusz362.github.io/menujs.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Projekty js</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Projekty inne</a>
+  </div>
 
-<div id = "text">
-  <div class = "okienko">
-  
-  <h3>Sokoban</h3>
-  <a href="https://patrycjusz362.github.io/js/sokoban/gra.html">
-  <img src="./obrazki/sokoban.png" width = "40%"/></a>
-  <div class= "opisgierki">Perwsza  gierka w js, wzorowana na znanaje grze o tej zamej nazwie, ustawiaj pudełka na właściwe pola.</div>
-  
-    
-	<hr>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="https://patrycjusz362.github.io/menujs.html" class="w3-bar-item w3-button w3-padding-large">Projekty js</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Projekty inne</a>
+
   </div>
-  
-  
-  <div class = "okienko">
-  
-  <h3>Connect 4</h3>
-  <a href="https://patrycjusz362.github.io/js/connect4/connect4.html">
-  <img src="./obrazki/connect4.png" width = "40%"/></a>
-  <div class= "opisgierki">Posta gra w 4 w rzędzie, do gry jest potrzebna druga osoba</div>
-  
-    
-	<hr>
-  </div>
-  
-  
-    <div class = "okienko">
-  
-  <h3>Gwiadowy paint</h3>
-  <a href="https://patrycjusz362.github.io/js/gwiazdy/gwaizdy.html">
-  <img src="./obrazki/gwiazdy.png" width = "40%"/></a>
-  <div class= "opisgierki">Chcesz się poczuć jak gwiazda? To możesz se nimi porysować, pierwsze podejście do canvasów<br> NIE DZIAŁA NA TELEFONACH!!!
-  </div>
-  
-    
-	<hr>
-  </div>
-<div class = "okienko">
-  
-  <h3>Kalkulator</h3>
-  <a href="https://patrycjusz362.github.io/js/kalkulator/kalkulator.html">
-  <img src="./obrazki/kalkulator.png" width = "40%"/></a>
-  <div class= "opisgierki">Kalkulator zrobiony jako praca domowa, najprostsze możliwe operacje
-  </div>
-  
-    
-	<hr>
-  </div>
-  
-  <div class = "okienko">
-  
-  <h3>Snake</h3>
-  <a href="https://patrycjusz362.github.io/js/snake">
-  <img src="./obrazki/snake.png" width = "40%"/></a>
-  <div class= "opisgierki">Prosta gierka w Snake
-  </div>
-  
-    
-	<hr>
-  </div>
-  
-  
-  
- 
 </div>
+
+<!-- Header -->
+<header class="w3-container w3-indigo w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Projekty js</h1>
+  <p class="w3-xlarge">Narazie zbyt dużo tu nie ma</p>
+
+</header>
+
+<!-- sokoban -->
+<div class="w3-row-padding w3-padding-16 w3-container w3-cyan w3-text-deep-purple">
+  <div class="w3-content">
+      <h1>Sokoban</h1>
+	  <img src="./obrazki/sokoban.png" align="right" width = "300px"/><br>
+      <h5 class="w3-padding-32">Perwsza  gierka w js, wzorowana na znanaje grze o tej zamej nazwie, ustawiaj pudełka na właściwe pola.</h5>
+		<a href="https://patrycjusz362.github.io/js/sokoban/gra.html" class="w3-btn w3-indigo">Zobacz >></a></a></a>
+		<br><br><br><br><br><br><br>
+      <hr>
+  </div>
+</div>
+<!-- c4 -->
+<div class="w3-row-padding w3-padding-16 w3-container w3-cyan w3-text-deep-purple">
+  <div class="w3-content">
+      <h1>Connect4</h1>
+	  <img src="./obrazki/connect4.png" align="right" width = "300px"/><br>
+      <h5 class="w3-padding-32">Posta gra w 4 w rzędzie, do gry jest potrzebna druga osoba</h5>
+		<a href="https://patrycjusz362.github.io/js/connect4/connect4.html" class="w3-btn w3-indigo">Zobacz >></a></a></a>
+		<br><br><br><br><br><br><br>
+      <hr>
+  </div>
+</div>
+<!-- gwiazdy -->
+<div class="w3-row-padding w3-padding-16 w3-container w3-cyan w3-text-deep-purple">
+  <div class="w3-content">
+      <h1>Gwiadowy paint</h1>
+	  <img src="./obrazki/gwiazdy.png" align="right" width = "300px"/><br>
+      <h5 class="w3-padding-32">Chcesz się poczuć jak gwiazda? To możesz se nimi porysować, pierwsze podejście do canvasów<br> NIE DZIAŁA NA TELEFONACH!!!</h5>
+		<a href="https://patrycjusz362.github.io/js/gwiazdy/gwaizdy.html" class="w3-btn w3-indigo">Zobacz >></a></a></a>
+		<br><br><br><br>
+      <hr>
+  </div>
+</div>
+<!-- kalk -->
+<div class="w3-row-padding w3-padding-16 w3-container w3-cyan w3-text-deep-purple">
+  <div class="w3-content">
+      <h1>Kalkulator</h1>
+	  <img src="./obrazki/kalkulator.png" align="right" width = "300px"/><br>
+      <h5 class="w3-padding-32">Kalkulator zrobiony jako praca domowa, najprostsze możliwe operacje</h5>
+		<a href="https://patrycjusz362.github.io/js/kalkulator/kalkulator.html" class="w3-btn w3-indigo">Zobacz >></a></a></a>
+		<br><br><br><br><br><br><br><br><br>
+      <hr>
+  </div>
+</div>
+<!-- Snake -->
+<div class="w3-row-padding w3-padding-16 w3-container w3-cyan w3-text-deep-purple">
+  <div class="w3-content">
+      <h1>Snake</h1>
+	  <img src="./obrazki/snake.png" align="right" width = "300px"/><br>
+      <h5 class="w3-padding-32">Prosta gierka w Snake</h5>
+		<a href="https://patrycjusz362.github.io/js/snake" class="w3-btn w3-indigo">Zobacz >></a></a></a>
+		<br><br><br><br>
+      <hr>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-indigo w3-padding-32 w3-center">
+<h1 class="w3-margin w3-xlarge">stopka czycos<br>(linki do ogarniecia)</h1>
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
 </body>
 </html>
