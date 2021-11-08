@@ -44,8 +44,11 @@ for (let j=0; j<wymiar_y*wymiar_x; j++){
 	if (tryb=="box"&&(j<wymiar_x||j%wymiar_x==0||j%wymiar_x==wymiar_x-1||(j<wymiar_x*wymiar_y&&j>(wymiar_x*wymiar_y)-wymiar_x))){
 		mapa[j]= "wall";
 	}
-}
 	
+}
+if (tryb=="random"||tryb=="wojna"){
+	wojna();
+	}	
 pozycjaJablka=losuj();
 	gra();
 }
@@ -101,6 +104,9 @@ function ruch(){
 		dlugosc++;
 		mapa[pozycjaGracza]=dlugosc;
 		pozycjaJablka=losuj();
+		if (tryb=="wojna") wojna();
+		
+		
 	}else if (mapa[pozycjaGracza]==0){
 		
 		for (let i=0; i<mapa.length;i++ ){
@@ -198,11 +204,53 @@ function zmienkirunek(przycisk){
   if ((przycisk =="d")&&(kierunek!="a")){
 	  kierunek =przycisk;
   }
-	
-	
-	
-	
-	
+
 }
+function wojna(){
+	for (let j=0; j<wymiar_y*wymiar_x; j++){
+		
+		if (!(Number.isInteger(mapa[j]))||mapa[j]== 0) {
+		
+		mapa[j]= 0;
+		
+		let losowa = Math.floor(Math.random()*10);
+		
+		if (losowa == 1&&(
+		j!=pozycjaGracza&&
+		j!=pozycjaGracza+1&&
+		j!=pozycjaGracza+2&&
+		j!=pozycjaGracza-1&&
+		j!=pozycjaGracza-2&&
+		
+		j!=pozycjaGracza+wymiar_x&&
+		j!=pozycjaGracza+wymiar_x+1&&
+		j!=pozycjaGracza+wymiar_x+2&&
+		j!=pozycjaGracza+wymiar_x-1&&
+		j!=pozycjaGracza+wymiar_x-2&&
+		
+		j!=pozycjaGracza-wymiar_x&&
+		j!=pozycjaGracza-wymiar_x+1&&
+		j!=pozycjaGracza-wymiar_x+2&&
+		j!=pozycjaGracza-wymiar_x-1&&
+		j!=pozycjaGracza-wymiar_x-2&&
+		
+		j!=pozycjaGracza+(wymiar_x*2)&&
+		j!=pozycjaGracza+((wymiar_x*2)+1)&&
+		j!=pozycjaGracza+((wymiar_x*2)+2)&&
+		j!=pozycjaGracza+((wymiar_x*2)-1)&&
+		j!=pozycjaGracza+((wymiar_x*2)-2)&&
+		
+		j!=pozycjaGracza-(wymiar_x*2)&&
+		j!=pozycjaGracza-((wymiar_x*2)+1)&&
+		j!=pozycjaGracza-((wymiar_x*2)+2)&&
+		j!=pozycjaGracza-((wymiar_x*2)-1)&&
+		j!=pozycjaGracza-((wymiar_x*2)-2)
+		)) 
+		mapa[j]= "wall";         //około 1/10 szans
+		}
+	}
+}
+
+
 
 
