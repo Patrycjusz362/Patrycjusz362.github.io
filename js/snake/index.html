@@ -18,6 +18,14 @@ height:20px;
 width:20px;
 float: left; 
 }
+.sciana {
+background-color:blue;
+margin: 0px;
+padding: 0px;
+height:20px;
+width:20px;
+float: left; 
+}
 .jablko {
 background-color:red;
 margin: 0px;
@@ -65,21 +73,15 @@ y: <input type="range" id="y" min="5" max="50" step="1" value="10" oninput="this
 Szybkość:(mniej=szybciej)<br>
 <input type="range" id="speed" min="1" max="5" step="1" value="4" oninput="this.nextElementSibling.value = this.value"/><output>4</output><br>
 
-
+Plansza:<br>
+<select id="tryb">
+  <option value="pusty">Pusta</option>
+  <option value="box">Box</option>
+  <option value="random">Random</option>
+</select>
 </form>
 <h1 id= "score"></h1>
-<div id="telefon">
-<button type="button" id="odstep" class="przycisk">🡄</button>
-	 <button type="button" onclick="zmienkirunek('w')" class="przycisk">🡅</button><br>
-	 <button type="button" onclick="zmienkirunek('a')" class="przycisk">🡄</button>
-	 <button type="button" id="odstep" class="przycisk">.</button>
-	 <button type="button" onclick="zmienkirunek('d')" class="przycisk">🡆</button><br>
-	  <button type="button" id="odstep" class="przycisk">.</button>
-	 <button type="button" onclick="zmienkirunek('s')" class="przycisk">🡇</button>
-	 
-	 
-
- </div>
+<p class="znika">Sterowanie wasd</p>
 
 	
 </body>

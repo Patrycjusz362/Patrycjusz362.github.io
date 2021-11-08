@@ -7,7 +7,7 @@ var kierunek = "d";
 var dlugosc=4;
 var ustawienie_speed = 10;
 var speed = ustawienie_speed;
-
+var tryb = "pusty";
 
 
 
@@ -24,11 +24,22 @@ pozycjaGracza=parseInt((wymiar_x/4)+((wymiar_y*wymiar_x)/2));
 
 kierunek = "d";
 dlugosc=4;
-ustawienie_speed = document.getElementById("speed").value * 4;
+ustawienie_speed = document.getElementById("speed").value;
 speed = ustawienie_speed;
+
+
+
+tryb=document.getElementById("tryb").value;
+console.log(tryb);
+
+
+
 
 for (let j=0; j<wymiar_y*wymiar_x; j++){
 	mapa[j]= 0;
+	if (tryb=="box"&&(j<wymiar_x||j%wymiar_x==0||j%wymiar_x==wymiar_x-1||(j<wymiar_x*wymiar_y&&j>(wymiar_x*wymiar_y)-wymiar_x))){
+		mapa[j]= "wall";
+	}
 }
 	
 pozycjaJablka=losuj();
@@ -43,12 +54,27 @@ if (window.height>window.width){
 function gra(){
 	ruch();
 	rysuj();
-	setTimeout(gra, 1);
+	setTimeout(gra, 40);
 }
 
 function ruch(){
 	
 	if (speed==0){
+		
+		
+		if (pozycjaGracza == 0&&kierunek=="a"){
+			pozycjaGracza=wymiar_x;
+		}else if ((pozycjaGracza%wymiar_x==0)&&(pozycjaGracza!=0)&&(kierunek=="a")){//lewo
+			pozycjaGracza+=wymiar_x;	
+		}else if ((pozycjaGracza%wymiar_x==wymiar_x-1)&&(kierunek=="d")){//prawo
+			pozycjaGracza-=wymiar_x;	
+		}else if ((pozycjaGracza<=wymiar_x)&&(kierunek=="w")&&pozycjaGracza!=wymiar_x){//góra
+			pozycjaGracza=(wymiar_x*wymiar_y)-(wymiar_x-pozycjaGracza)+wymiar_x;	
+		}else if ((pozycjaGracza>=(wymiar_y*wymiar_x)-wymiar_x)&&(kierunek=="s")){//dół
+			console.log("down");
+			pozycjaGracza-=(wymiar_x*wymiar_y);	
+		}	
+		
 		
 	switch(kierunek){
 		case "w":
@@ -65,6 +91,8 @@ function ruch(){
 			break;
 	}
 	
+	
+	console.log(pozycjaGracza);
 	if (pozycjaGracza == pozycjaJablka){
 		dlugosc++;
 		mapa[pozycjaGracza]=dlugosc;
@@ -79,16 +107,7 @@ function ruch(){
 		
 		mapa[pozycjaGracza]=dlugosc;
 		
-		if ((pozycjaGracza%wymiar_x==0)&&(pozycjaGracza!=0)&&(kierunek=="d")){
 		
-		przegrana();
-			
-		}else if ((pozycjaGracza%wymiar_x==wymiar_x-1)&&(kierunek=="a")){
-			
-		przegrana();
-			
-				
-			}
 		
 		
 	}else {
@@ -114,8 +133,11 @@ function rysuj(){
 			wynik+='<div class="jablko"></div>';
 		}else if (mapa[x]==0){
 			wynik+='<div class="tlo"></div>';
-		}else{
+		}else if (!isNaN(mapa[x])){
 			wynik+='<div class="waz"></div>';
+		}
+		else{
+			wynik+='<div class="sciana"></div>';
 		}
 	}
 	
