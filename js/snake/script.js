@@ -17,10 +17,14 @@ for(let i = 0; i < doUsuniecia.length; i++) {
     doUsuniecia[i].style.display = "none";
   }
 
+
 wymiar_x = parseInt(document.getElementById("x").value);
 wymiar_y = parseInt(document.getElementById("y").value);
 mapa=[];
 pozycjaGracza=parseInt((wymiar_x/4)+((wymiar_y*wymiar_x)/2));
+
+document.getElementById("mapa").style.width = wymiar_x*20+"px"
+document.getElementById("mapa").style.height = wymiar_y*20+"px"
 
 kierunek = "d";
 dlugosc=4;
@@ -92,7 +96,7 @@ function ruch(){
 	}
 	
 	
-	console.log(pozycjaGracza);
+	//console.log(pozycjaGracza);
 	if (pozycjaGracza == pozycjaJablka){
 		dlugosc++;
 		mapa[pozycjaGracza]=dlugosc;
