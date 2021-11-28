@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<title>tytul</title>
+<script type="text/javascript" src='./script.js'></script>
+<style>
+    body {
+        font-family: Tahoma;
+    }
+    .pole{
+        float: left;
+        width:20px;
+        height:20px;
+        text-align: center; 
+    }
+    .nowalinia {
+        clear: both;
+        width: 0px;
+        height: 0px;
+    }
+    .odkryte {
+        border: 2px solid black;
+        background-color: darkgray;
+    }
+    .zakryte {
+        border: 2px solid black;
+        background-color: gray;
+    }
+    .flaga {
+        border: 2px solid black;
+        background-color: red;
+    }
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+    }
+</style>
+</head>
+<body>
+    <p id="ukryj">
+        <input type="radio" name="lvl" value="1" checked />Easy<br />
+        <input type="radio" name="lvl" value="2" />Normal<br />
+        <input type="radio" name="lvl" value="3" />Hard<br />
+        <input type="radio" name="lvl" value="4" />Custom (jak dasz wiecej niż 100x100 to prawdopobnie przeglądarka umrze, <br />
+        jeśli chcesz próbować dawać więcej to polecam dawać więcej bomb i najbardziej żrące jest pierwsze kliknięcie, potem powinno dać rade grać płynnie)<br />
+        (dokładniej to im mniej zer na planszy tym mniej bedzie lagowało)<br />
+
+
+        X: <input type="number" id="x" /><br />
+        Y: <input type="number" id="y" /><br />
+        B: <input type="number" id="bomby" /><br />
+
+        <br />
+        <input type="button" value="Start" onclick="start()" />
+    </p>
+
+    <b><div id="ekran" class="noselect"></div></b>
+
+    <p id="komunikat" hidden> Przegrałeś! <input type="button" value="Jeszcze raz" onclick="start()" /></p>
+
+</body>
+</html>
