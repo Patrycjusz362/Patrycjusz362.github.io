@@ -51,11 +51,11 @@ function start() {
             break;
 
     }
-	console.log(wielkosc_pola);
+	//console.log(wielkosc_pola);
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
 	wielkosc_pola = Math.floor(window.innerWidth/x)-4;
 	}
-    console.log(wielkosc_pola);
+    //console.log(wielkosc_pola);
 	document.getElementById("ekran").style.width = (x * (wielkosc_pola+4)) + "px";
 
     //tworzy plansze wypełnioną zerami
@@ -150,21 +150,21 @@ function wyswietl() {
                 if (plansza[i][j] == '0') {
                     ekran += "<div class='odkryte pole' style='"+rozmiary+"'></div>"
                 } else if (plansza[i][j] == '1'){
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+" color: blue;'>" + 1 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+" color: blue;' onclick='cyfra(" + i + "," + j + ",1)'>" + 1 + "</div>"
                 } else if (plansza[i][j] == '2') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: green;'>" + 2 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: green;'onclick='cyfra(" + i + "," + j + ",2)'>" + 2 + "</div>"
                 } else if (plansza[i][j] == '3') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: red;'>" + 3 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: red;'onclick='cyfra(" + i + "," + j + ",3)'>" + 3 + "</div>"
                 } else if (plansza[i][j] == '4') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: darkblue;'>" + 4 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: darkblue;onclick='cyfra(" + i + "," + j + ",4)''>" + 4 + "</div>"
                 } else if (plansza[i][j] == '5') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: brown;'>" + 5 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: brown;'onclick='cyfra(" + i + "," + j + ",5)'>" + 5 + "</div>"
                 } else if (plansza[i][j] == '6') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: lihgtblue;'>" + 6 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: lihgtblue;'onclick='cyfra(" + i + "," + j + ",6)'>" + 6 + "</div>"
                 } else if (plansza[i][j] == '7') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: black;'>" + 7 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: black;' onclick='cyfra(" + i + "," + j + ",7)'>" + 7 + "</div>"
                 } else if (plansza[i][j] == '8') {
-                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: black;'>" + 8 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: black;'onclick='cyfra(" + i + "," + j + ",8)'>" + 8 + "</div>"
                 }
             } else if (odkryte[i][j] == "2"){
                 ekran += "<div class='flaga pole' style='"+rozmiary+"' oncontextmenu='lewy(" + i + "," + j + ")'><img src='flag.jpg' width='"+wielkosc_pola+"px'/></div>";
@@ -271,3 +271,78 @@ function wygrana() { //sprawdza czy gra została ukończona
 function showaj(howaj) {
     document.getElementById("custom").disa = howaj;
 }
+
+function cyfra(Y,X,numer){
+	let ilosc_flag = 0;
+	
+	if (typeof plansza[Y + 1] !== 'undefined') {
+                if (odkryte[Y + 1][X + 1] == "2") {
+                    ilosc_flag++;
+                }
+                if (odkryte[Y + 1][X] == "2") { //x
+                    ilosc_flag++;
+                }
+                if (odkryte[Y + 1][X - 1] == "2") { //x-1
+                    ilosc_flag++;
+                }
+    }
+
+    if (typeof plansza[Y - 1] !== 'undefined') {
+                if (odkryte[Y - 1][X + 1] == "2") {
+                    ilosc_flag++;
+                }
+                if (odkryte[Y - 1][X] == "2") {
+                    ilosc_flag++;
+                }
+                if (odkryte[Y - 1][X - 1] == "2") {
+                    ilosc_flag++;
+                }
+    }
+
+            if (odkryte[Y][X + 1] == "2") {
+                ilosc_flag++;
+            }
+
+            if (odkryte[Y][X - 1] == "2") {
+                ilosc_flag++;
+            }
+			
+			
+	if (ilosc_flag==numer){
+		if (typeof plansza[Y + 1] !== 'undefined') {
+                if (odkryte[Y + 1][X + 1] == "0") {
+                    kliknij(Y + 1, X + 1);
+                }
+                if (odkryte[Y + 1][X] == "0") { //x
+                    kliknij(Y + 1, X);
+                }
+                if (odkryte[Y + 1][X - 1] == "0") { //x-1
+                    kliknij(Y + 1, X - 1);
+                }
+            }
+
+            if (typeof plansza[Y - 1] !== 'undefined') {
+                if (odkryte[Y - 1][X + 1] == "0") {
+                    kliknij(Y - 1, X + 1);
+                }
+                if (odkryte[Y - 1][X] == "0") {
+                    kliknij(Y - 1, X);
+                }
+                if (odkryte[Y - 1][X - 1] == "0") {
+                    kliknij(Y - 1, X - 1);
+                }
+            }
+
+            if (odkryte[Y][X + 1] == "0") {
+                kliknij(Y, X + 1);
+            }
+
+            if (odkryte[Y][X - 1] == "0") {
+                kliknij(Y, X - 1);
+            }
+		
+	}
+
+}
+
+
