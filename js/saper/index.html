@@ -7,43 +7,46 @@
 <style>
     body {
         font-family: Tahoma;
+		background-color: darkgray;
     }
     .pole{
         float: left;
-        width:20px;
-        height:20px;
         text-align: center; 
+		margin:0;
     }
     .nowalinia {
         clear: both;
         width: 0px;
         height: 0px;
+		margin:0;
     }
     .odkryte {
-        border: 2px solid black;
+        border: 2px inset black;
         background-color: darkgray;
     }
     .zakryte {
-        border: 2px solid black;
+        border: 2px outset black;
         background-color: gray;
     }
     .flaga {
-        border: 2px solid black;
-        background-color: red;
+        border: 2px outset black;
+        background-color: black;
     }
+	#ekran{
+	
+	}
     .noselect {
         -webkit-touch-callout: none; /* iOS Safari */
         -webkit-user-select: none; /* Safari */
         -khtml-user-select: none; /* Konqueror HTML */
         -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
-        user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+        user-select: none;
     }
 </style>
 </head>
 <body>
-    <p id="ukryj">
+    <div id="ukryj">
         <input type="radio" name="lvl" value="1" checked />Easy<br />
         <input type="radio" name="lvl" value="2" />Normal<br />
         <input type="radio" name="lvl" value="3" />Hard<br />
@@ -51,14 +54,14 @@
         jeśli chcesz próbować dawać więcej to polecam dawać więcej bomb i najbardziej żrące jest pierwsze kliknięcie, potem powinno dać rade grać płynnie)<br />
         (dokładniej to im mniej zer na planszy tym mniej bedzie lagowało)<br />
 
-
-        X: <input type="number" id="x" /><br />
-        Y: <input type="number" id="y" /><br />
-        B: <input type="number" id="bomby" /><br />
-
+		<table>
+		<tr><td>X: </td><td><input type="number" id="x" /></td></tr>
+		<tr><td>Y: </td><td><input type="number" id="y" /></td></tr>
+		<tr><td>B: </td><td><input type="number" id="bomby" /></td></tr>
+		</table>
         <br />
         <input type="button" value="Start" onclick="start()" />
-    </p>
+    </div>
 
     <b><div id="ekran" class="noselect"></div></b>
 

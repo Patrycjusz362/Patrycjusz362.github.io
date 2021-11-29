@@ -5,12 +5,17 @@ var plansza = [];
 var odkryte = []; //0=zakryte, 1 = odkryte, 2=flaga
 
 var przegrana = false;
-
 var pierwsze_klikniecie = true;
+
+var wielkosc_pola = 20;
+
 
 document.addEventListener('contextmenu', event => event.preventDefault()); //wyłącza okienko przy lewym przycisku
 
 function start() {
+	
+	
+
     przegrana = false;
     pierwsze_klikniecie = true;
     //bierze dane z srtony
@@ -46,11 +51,12 @@ function start() {
             break;
 
     }
-
-    document.getElementById("ekran").style.width = (x * 25) + "px";
-
-
-
+	console.log(wielkosc_pola);
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+	wielkosc_pola = Math.floor(window.innerWidth/x)-4;
+	}
+    console.log(wielkosc_pola);
+	document.getElementById("ekran").style.width = (x * (wielkosc_pola+4)) + "px";
 
     //tworzy plansze wypełnioną zerami
     let dlugosc_x = "";
@@ -135,33 +141,35 @@ String.prototype.replaceAt = function (index, replacement) {
 
 function wyswietl() {
     let ekran = ""
-
+	
+	let rozmiary ="width:"+ wielkosc_pola +"px; height:"+ wielkosc_pola +"px; font-size: "+ (wielkosc_pola-5) +"px;";
+	
     for (let i = 0; i < y; i++) {
         for (let j = 0; j < x; j++) {
             if (odkryte[i][j] == "1") {
                 if (plansza[i][j] == '0') {
-                    ekran += "<div class='odkryte pole'></div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"'></div>"
                 } else if (plansza[i][j] == '1'){
-                    ekran += "<div class='odkryte pole' style='color: blue;'>" + 1 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+" color: blue;'>" + 1 + "</div>"
                 } else if (plansza[i][j] == '2') {
-                    ekran += "<div class='odkryte pole' style='color: green;'>" + 2 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: green;'>" + 2 + "</div>"
                 } else if (plansza[i][j] == '3') {
-                    ekran += "<div class='odkryte pole' style='color: red;'>" + 3 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: red;'>" + 3 + "</div>"
                 } else if (plansza[i][j] == '4') {
-                    ekran += "<div class='odkryte pole' style='color: darkblue;'>" + 4 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: darkblue;'>" + 4 + "</div>"
                 } else if (plansza[i][j] == '5') {
-                    ekran += "<div class='odkryte pole' style='color: brown;'>" + 5 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: brown;'>" + 5 + "</div>"
                 } else if (plansza[i][j] == '6') {
-                    ekran += "<div class='odkryte pole' style='color: lihgtblue;'>" + 6 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: lihgtblue;'>" + 6 + "</div>"
                 } else if (plansza[i][j] == '7') {
-                    ekran += "<div class='odkryte pole' style='color: black;'>" + 7 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: black;'>" + 7 + "</div>"
                 } else if (plansza[i][j] == '8') {
-                    ekran += "<div class='odkryte pole' style='color: black;'>" + 8 + "</div>"
+                    ekran += "<div class='odkryte pole' style='"+rozmiary+"color: black;'>" + 8 + "</div>"
                 }
             } else if (odkryte[i][j] == "2"){
-                ekran += "<div class='flaga pole' oncontextmenu='lewy(" + i + "," + j + ")'></div>";
+                ekran += "<div class='flaga pole' style='"+rozmiary+"' oncontextmenu='lewy(" + i + "," + j + ")'><img src='flag.jpg' width='"+wielkosc_pola+"px'/></div>";
             }else {
-                ekran += "<div class='zakryte pole' onclick='kliknij(" + i + "," + j + ")' oncontextmenu='lewy(" + i + "," + j + ")'></div>";
+                ekran += "<div class='zakryte pole' style='"+rozmiary+"' onclick='kliknij(" + i + "," + j + ")' oncontextmenu='lewy(" + i + "," + j + ")'></div>";
             }
 
         }
