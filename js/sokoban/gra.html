@@ -1,243 +1,226 @@
 <!DOCTYPE html>
-<html lang = "pl">
+<html lang="en">
 <head>
-<meta charset = "UTF-8"/>
-<title>Sōkoban</title>
-<style>
-img {
-float: up
-float: left
-margin: 0px
-border : 0px
-}
-body
-{
-font-size: 0px
-}
-#odstep {
-visibility: hidden
-}
-</style>
-<script src="poziomy.js"></script> 
-<script>
-String.prototype.replaceAt = function(index, replacement) {
-    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-}
-</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="js.cookie.min.js"></script>
+    <script src="lvl.js"></script>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+        }
+        body{
+            background-color: gray;
+        }
+    </style>
+
+    <title>Document</title>
 </head>
-<body onload="poziom(1)">
-<div id="ekran">wyswietl()</div>
-<script type = "text/javascript">
- alert("przesuwaj skrzynki na zeilone pola")
- alert("sterowanie: WASD, r cofa ruch")
- var rozmiar;
- var mapa;
- var poziomka = 1;
- var box = "<img src='box.png'  width = '32px' height='32px'/>";
- var box_ok = "<img src='box_ok.png'  width = '32px' height='32px'/>";
- var sciana = "<img src='sciana.png' height='32px'/>";
- var podloga = "<img src='podloga.png' height='32px'/>";
- var wygrana = "<img src='win.png' height='32px'/>";
- var gracz = "<img src='hero.png'  width = '32px' height='32px'/>";
- var pozycja_gracza;
- var ruchy = [];
- async function wyswietl()
- {
-  var kopia_mapy = await mapa.replaceAt(pozycja_gracza, '^');
-  kopia_mapy = await kopia_mapy.replaceAll('b', box);
-  kopia_mapy = await kopia_mapy.replaceAll('B', box_ok);
-  kopia_mapy = await kopia_mapy.replaceAll('~', "<br>");
-  kopia_mapy = await kopia_mapy.replaceAll('`', podloga);
-  kopia_mapy = await kopia_mapy.replaceAll('^', gracz);
-  kopia_mapy = await kopia_mapy.replaceAll('*', wygrana);
-  kopia_mapy = await kopia_mapy.replaceAll('|', sciana);
-  document.getElementById("ekran").innerHTML = await poziomka+"lvl<br>"+kopia_mapy;
- }
-  
- async function zapis()
- {
-	await ruchy.push(mapa);
-	await ruchy.push(pozycja_gracza);
- }
- 
- async function wczytaj()
- {
- if (ruchy.length > 3)
- {
- await ruchy.pop();
- await ruchy.pop();
- pozycja_gracza= await ruchy[ruchy.length - 1];
- await ruchy.pop();
- mapa = await ruchy[ruchy.length - 1];
- await ruchy.pop();
- await wyswietl();
- }
- }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- function zmiana_pozycji(ile)
- {
- var x = 0;
- pozycja_gracza = pozycja_gracza+ile;
- var podloga = mapa.charAt(pozycja_gracza);
- if (podloga!= '`'&&podloga!= '*'&&podloga!= 'b'&&podloga!= 'B') //sprawdza czy nie ma ściamy lub pudełka
-	{
-		pozycja_gracza= pozycja_gracza-ile;
-	}
-	
-	
-	if ((podloga== 'b'||podloga== 'B'))
-		{
-		x = pozycja_gracza + ile; 
-		x = mapa.charAt(x); // x= miejsce za pudełkiem
-			if (x != "*"&& x != "`") 
-			{
-			pozycja_gracza= pozycja_gracza-ile;
-			}
-			else 
-			{
-			switch (podloga)
-			{
-			case 'b':
-			mapa = mapa.replaceAt(pozycja_gracza, '`');
-			x=pozycja_gracza+ile;
-			if (mapa.charAt(x) == "`")
-			{
-			mapa = mapa.replaceAt(x, 'b');
-			}else if (mapa.charAt(x) == "*")
-			{
-			mapa = mapa.replaceAt(x, 'B');
-			}
-			break;
-			case 'B':
-			mapa = mapa.replaceAt(pozycja_gracza, '*');
-			x=pozycja_gracza+ile;
-			if (mapa.charAt(x) == "`")
-			{
-			mapa = mapa.replaceAt(x, 'b');
-			}else if (mapa.charAt(x) == "*")
-			{
-			mapa = mapa.replaceAt(x, 'B');
-			}
-			break;
-			
-			}
-			}
-		
-		}
-	if (!mapa.includes("*")) //sprawdza czy poziom został ukonczony
-	{
-	poziomka = poziomka+1;
-	poziom(poziomka);
-	ruchy = [];
-	}
-	zapis();	
-		
-	
-	
-	
-	
-	
- }
- 
- 
- 
- 
- 
- 
- 
- 
- function gora()
- {
-  var x;
-	zmiana_pozycji(-rozmiar);
-	wyswietl();
- }
- function dol()
- {
-	zmiana_pozycji(rozmiar);
-	wyswietl();
- }
- function prawo()
- {
-	zmiana_pozycji(1);
-	wyswietl();
- }
- function lewo()
- {
-	zmiana_pozycji(-1);
-	wyswietl();
- }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- document.addEventListener("keydown", function(event) {
-  if (event.keyCode == 87) //w
-  {
-    gora();
-  }
-  if (event.keyCode == 65) //a
-  {
-    lewo();
-  }
-  if (event.keyCode == 83) //s
-  {
-    dol();
-  }
-  if (event.keyCode == 68) //d
-  {
-    prawo();
-  }
-  if (event.keyCode == 82) //r
-  {
-    wczytaj();
-  }
-});
-  
+    <script>
+        var lvl = 0;
+        var mapa ='';
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        if(Cookies.get('lvl') != null){
+            lvl = Cookies.get('lvl');
+        }else{
+            Cookies.set('lvl', 0, { expires: 7 , path: '' });
+        }
+        
+
+        function start(){
+            mapa = maps[lvl];
+            poprawMapę();
+            rysuj();
+        }
+        
+        function rysuj(){
+            wynik="";
+            $("#lvl_nr").html(lvl);
+            for (i=0;i<mapa.length;i++){
+                switch(mapa[i]){
+                    case '#':
+                        wynik+="<img src='img/sciana.png'></img>";
+                        break;
+                    case ' ':
+                        wynik+="<img src='img/podloga.png'></img>";
+                        break;
+                    case '@':
+                    case '+':
+                        wynik+="<img src='img/hero.png'></img>";
+                        break;
+                    case '$':
+                        wynik+="<img src='img/box.png'></img>";
+                        break;
+                    case '.':
+                        wynik+="<img src='img/win.png'></img>";
+                        break;
+                    case '\n':
+                        wynik+="<br>";
+                        break;
+                    case '*':
+                        wynik+="<img src='img/box_ok.png'></img>";
+                        break;
+                    default:
+                        wynik+="error";
+                    break;
+                }
+            }
+            $("#lvl").html(wynik);
+        }
+
+
+        $("html").keydown(function(event){
+            let pos = mapa.search(/[+@]/);
+            let pole = '';
+            let szerokosc = 0;
+            let postac = '@'; // - postać po przesunięciu
+            let box = '$'; // - box po przesunięciu
+            x='';
+            let i=1;
+            while(x!="\n"){ //pobieranie szerokosci mapy
+                x=mapa[i];
+                i++;
+            }
+            szerokosc = i-2;
+            console.log(szerokosc);
+            console.log(pos);
+
+            
+            if (mapa[pos]=="@"){
+                pole=" "
+            }else{
+                pole="."
+            }
+
+            function czyPusto(gdzie){
+                if(mapa[pos+gdzie]==' '){
+                    postac="@";
+                }else{
+                    postac="+";
+                }
+                return mapa[pos+gdzie]==' '|| mapa[pos+gdzie]=='.' ;
+            }
+            
+            
+            function czyBox(gdzie){
+                if(mapa[pos+gdzie]=='$'){
+                    postac="@";
+                }else{
+                    postac="+";
+                }
+
+                if(mapa[pos+gdzie+gdzie]=='.'){
+                    box="*";
+                }else{
+                    box="$";
+                }
+
+                if ((mapa[pos+gdzie]=='$' || mapa[pos+gdzie]=='*')&&(mapa[pos+gdzie+gdzie]==' '||mapa[pos+gdzie+gdzie]=='.')){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            switch (event.which){
+                case 68://prawo
+                case 39:
+                    if (czyPusto(1)){
+                        mapa = mapa.substr(0,pos+1)+postac+mapa.substr(pos+2);
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                    if (czyBox(1)){
+                        mapa = mapa.substr(0,pos+1)+postac+box+mapa.substr(pos+3);
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+
+                break;
+                case 65://lewo
+                case 37:
+                    if (czyPusto(-1)){
+                        mapa = mapa.substr(0,pos-1)+postac+mapa.substr(pos);
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                    if (czyBox(-1)){
+                        mapa = mapa.substr(0,pos-2)+box+postac+mapa.substr(pos);
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                break;
+
+                case 83://dol 
+                case 40:
+                    if (czyPusto(szerokosc+1)){
+                        mapa = mapa.substr(0,pos+szerokosc+1)+postac+mapa.substr(pos+szerokosc+2);
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                    if (czyBox(szerokosc+1)){
+                        mapa = mapa.substr(0,pos+szerokosc+1)+postac+mapa.substr(pos+szerokosc+2);
+                        mapa = mapa.substr(0,pos+szerokosc+szerokosc+2)+box+mapa.substr(pos+szerokosc+szerokosc+3);
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                break;
+                case 87://gora
+                case 38:
+                    if (czyPusto(-(szerokosc+1))){
+                        mapa = mapa.substr(0,pos-(szerokosc+1))+postac+mapa.substr(pos-(szerokosc));
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                    if (czyBox(-(szerokosc+1))){
+                        mapa = mapa.substr(0,pos-(szerokosc+1))+postac+mapa.substr(pos-(szerokosc));
+                        mapa = mapa.substr(0,pos-(szerokosc+szerokosc+2))+box+mapa.substr(pos-(szerokosc+szerokosc+1));
+                        mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
+                    }
+                break;
+            }
+
+
+            //sprawdzanie czy wygrana
+            if(mapa.search(/[+.]/)==-1){
+                lvl++;
+                mapa = maps[lvl];
+                if (mapa=='end'){
+                    alert("Wygrałeś!");
+                    lvl=0;
+                    mapa = maps[lvl];
+                }
+                poprawMapę();
+                Cookies.set('lvl', lvl, { expires: 7 , path: '' });
+            }
 
 
 
 
+            rysuj();
+        });
 
-</script>
-	 <br><button type="button" onclick="poziom(poziomka)">Reset poziomu</button> <br>
-	 <button type="button" onclick="wczytaj()">Cofnij ruch (R)</button><br>
-	 <button type="button" id="odstep">🡄</button>
-	 <button type="button" onclick="gora()">🡅</button><br>
-	 <button type="button" onclick="lewo()">🡄</button>
-	 <button type="button" onclick="dol()">🡇</button>
-	 <button type="button" onclick="prawo()">🡆</button>
-	 
+        function poprawMapę(){
+            mapa = mapa.replaceAll("-"," ");
+        }
+
+
+    </script>
+
+
+<body onload="start()">
+    <h1>Sokoban</h1>
+        <h2>Poziom: <span id="lvl_nr">0</span></h2>
+        <div id="lvl"></div>
 </body>
 </html>
