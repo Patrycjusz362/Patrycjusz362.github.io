@@ -217,8 +217,8 @@
                     alert("Wygrałeś!");
                     lvl=0;
                     mapa = maps[lvl];
-                    zapis.length =0;
                 }
+                zapis=[];
                 poprawMapę();
                 Cookies.set('lvl', lvl, { expires: 7 , path: '' });
             }
