@@ -14,6 +14,12 @@
         }
         body{
             background-color: gray;
+            align-items: center;
+        }
+        #lvl{
+            margin: auto;
+            width: 0 auto;
+            white-space: nowrap;
         }
     </style>
 
@@ -22,6 +28,8 @@
     <script>
         var lvl = 0;
         var mapa ='';
+        var zapis= [];
+
         function getCookie(cname) {
             var name = cname + "=";
             var decodedCookie = decodeURIComponent(document.cookie);
@@ -51,8 +59,9 @@
         }
         
         function rysuj(){
+
             wynik="";
-            $("#lvl_nr").html(lvl);
+            $("#lvl_nr").html(lvl+"/"+maps.length);
             for (i=0;i<mapa.length;i++){
                 switch(mapa[i]){
                     case '#':
@@ -99,10 +108,13 @@
                 i++;
             }
             szerokosc = i-2;
-            console.log(szerokosc);
-            console.log(pos);
+            //console.log(szerokosc);
+            //console.log(pos);
 
-            
+            zapis.push(mapa);
+
+
+
             if (mapa[pos]=="@"){
                 pole=" "
             }else{
@@ -188,6 +200,12 @@
                         mapa = mapa.substr(0,pos)+pole+mapa.substr(pos+1);
                     }
                 break;
+                case 82://cofnij
+                    if(zapis.length>1){
+                        zapis.pop();
+                        mapa = zapis.pop();
+                    }
+                break;
             }
 
 
@@ -199,6 +217,7 @@
                     alert("Wygrałeś!");
                     lvl=0;
                     mapa = maps[lvl];
+                    zapis.length =0;
                 }
                 poprawMapę();
                 Cookies.set('lvl', lvl, { expires: 7 , path: '' });
@@ -220,6 +239,7 @@
 
 <body onload="start()">
     <h1>Sokoban</h1>
+        (R- cofnij, F5 - reset poziomu)
         <h2>Poziom: <span id="lvl_nr">0</span></h2>
         <div id="lvl"></div>
 </body>
