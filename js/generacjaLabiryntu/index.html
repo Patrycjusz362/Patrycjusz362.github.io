@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .tile {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            white-space: nowrap;
+            line-height: 0px;
+            border: solid black;
+            border-width: 0px 0px 5px 5px;
+        }
+        .black{
+            background-color: black;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .white{
+            background-color: white;
+        }
+
+    </style>
+    
+    <script>
+        var mapx=10;
+        var mapy=10;
+        var x=0;
+        var instant=false;
+
+
+        function start() {
+            
+            mapx=$("#mapx").val();
+            mapy=$("#mapy").val();
+            var rozmiar = $("#rozmiar").val();
+            $("#box").html("");
+            $("#box").css("width", mapx*rozmiar);
+            var sciany = $("#sciany").val();
+
+            instant = $("#instant").is(":checked");
+            
+            for(var i=0; i<mapy; i++) {
+                for(var j=0; j<mapx; j++) {
+                    $("#box").append("<div class='tile black' id='"+j+","+i+"'></div>");
+                }
+                $("#box").append("<br>");
+            }
+
+            $("[id='0,0']").css("background-color", "green");
+            $("[id='"+(mapx-1)+","+(mapy-1)+"']").css("background-color", "red");
+
+            $("[id='0,0']").attr("class", "tile black");
+            $("[id='"+(mapx-1)+","+(mapy-1)+"']").attr("class", "tile black");
+
+
+            $(".tile").css("height", rozmiar);
+            $(".tile").css("width", rozmiar);
+            $(".tile").css("border-top", sciany+"px solid black");
+            $(".tile").css("border-right", sciany+"px solid black");
+
+
+
+
+            $("#box").css("border-width", "0px 0px "+sciany+"px "+sciany+"px");
+
+
+            if ($("#ukryj").prop("checked")){
+                $("#box").show(100);
+            }else{
+                //$("#box").hide(0);
+            }
+            
+            
+            generuj();
+        }
+
+
+
+
+
+
+
+        function generuj(){
+            x=parseInt(Math.random()*mapx);
+            y=parseInt(Math.random()*mapy);
+            
+            $("[id='"+x+","+y+"']").attr("class", "tile blue");
+            depthFirstSearch();
+        }
+            
+        
+        
+        
+        function depthFirstSearch(){
+                xx=x;
+                yy=y;
+
+                var mozliweKierunki = [];
+
+                if(x>0 && $("[id='"+(x-1)+","+y+"']").hasClass("black")){
+                    mozliweKierunki.push("left");
+                }
+                if(x<mapx-1 && $("[id='"+(x+1)+","+y+"']").hasClass("black")){
+                    mozliweKierunki.push("right");
+                }
+                if(y>0 && $("[id='"+x+","+(y-1)+"']").hasClass("black")){
+                    mozliweKierunki.push("up");
+                }
+                if(y<mapy-1 && $("[id='"+x+","+(y+1)+"']").hasClass("black")){
+                    mozliweKierunki.push("down");
+                }
+
+                //get random value from list
+                var random = Math.floor(Math.random() * mozliweKierunki.length);
+                var kierunek = mozliweKierunki[random];
+                if(kierunek=="up"){
+                        yy--;
+                        $("[id='"+x+","+y+"']").css("border-top", "0px solid black");
+                }else if(kierunek=="down"){
+                        yy++;
+                        $("[id='"+xx+","+yy+"']").css("border-top", "0px solid black");
+                }
+                else if(kierunek=="left"){
+                        xx--;
+                        $("[id='"+xx+","+yy+"']").css("border-right", "0px solid black");
+                }
+                else if(kierunek=="right"){
+                        xx++;
+                        $("[id='"+x+","+y+"']").css("border-right", "0px solid black");
+                }
+
+                $("[id='"+xx+","+yy+"']").attr("class", "tile blue");
+
+                x=xx;
+                y=yy;
+
+
+                //console.log(x+","+y+" "+$(".black").length);
+
+                //slepy zaułek
+    
+                while (!($("[id='"+(x+1)+","+y+"']").hasClass("black")||$("[id='"+(x-1)+","+y+"']").hasClass("black")||$("[id='"+x+","+(y+1)+"']").hasClass("black")||$("[id='"+x+","+(y-1)+"']").hasClass("black"))){
+                    
+                    
+                            $("[id='"+x+","+y+"']").attr("class", "tile white");
+                                //cofa o jedno pole "do tylu"
+                            if($("[id='"+x+","+y+"']").css("border-right")=="0px solid rgb(0, 0, 0)"&&$("[id='"+(x+1)+","+y+"']").hasClass("blue")){//prawo
+                                //console.log("prawo");
+                                $("[id='"+x+","+y+"']").attr("class", "tile white");
+                                x++;
+                            }
+                            else if($("[id='"+(x-1)+","+y+"']").css("border-right")=="0px solid rgb(0, 0, 0)"&&$("[id='"+(x-1)+","+y+"']").hasClass("blue")){//lewo
+                                //console.log("lewo");
+                                $("[id='"+x+","+y+"']").attr("class", "tile white");
+                                x--;
+                            }
+                            else if($("[id='"+x+","+y+"']").css("border-top")=="0px solid rgb(0, 0, 0)"&&$("[id='"+x+","+(y-1)+"']").hasClass("blue")){//gora
+                                //console.log("top");
+                                $("[id='"+x+","+y+"']").attr("class", "tile white");
+                                y--;
+                            }
+                            else if($("[id='"+x+","+(y+1)+"']").css("border-top")=="0px solid rgb(0, 0, 0)"&&$("[id='"+x+","+(y+1)+"']").hasClass("blue")){//dol
+                                //console.log("bottom");
+                                $("[id='"+x+","+y+"']").attr("class", "tile white");
+                                y++;
+                            }
+                            if($(".black").length==0){
+                                break;
+                            }
+                            //console.log($(".blue").length);
+
+                }
+                $("#progress").html(parseInt(100-($(".black").length/(mapx*mapy))*100)+"%");
+                if($(".black").length==0){
+                   
+                    $(".blue").each(function(){
+                        $(this).attr("class", "tile white");
+                    }); 
+                    $("#box").show(1000);
+                    return 0;
+                    
+                }
+
+                if(instant){
+                    depthFirstSearch();
+                    return 0;
+                }else{
+                    setTimeout(depthFirstSearch, 0);
+                }
+                
+            }
+    </script>
+
+</head>
+<body>
+    Rozmiar grubość scian: <input type="number" id="sciany" value="5" min="1"><br>
+    Rozmiar jednej komórki: <input type="number" id="rozmiar" value="20" min="6"><br>
+    Rozmiar mapy:<input type="text" id="mapx" value="10">x<input type="text" id="mapy" value="10"><br>
+    <input type="checkbox" id="ukryj" checked>Nie ukrywaj labiryntu w trakcie generacji<br>
+    <input type="checkbox" id="instant">Natychmiastowa generacja(jeśli mapa jest więkrza  niż 50x50 to może mocno lagować)<br>
+    <input type="button" value="Generuj" onclick="start()">
+    <div id="progress"></div>
+
+    <div id="box" hidden></div>
+</body>
+</html>
