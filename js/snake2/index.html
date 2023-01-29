@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake2</title>
+    <style>
+        .plytka{
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            float: left;
+        }
+    </style>
+    <script>
+        let plansza;//0-puste,1-up,2-right,3-down,4-left 
+        var timer;
+        function start(){
+            let x = Number(document.getElementById("x").value);
+            let y = Number(document.getElementById("y").value);
+            let speed = Number(document.getElementById("speed").value);
+            plansza = new Array(y);
+            for (var i = 0; i < y; i++) {
+                plansza[i] = new Array(x);
+            }
+            for (var i = 0; i < y; i++) {
+                for (var j = 0; j < x; j++) {
+                    plansza[i][j]=0;
+                }
+            }
+            clearInterval(timer);
+            timer = window.setInterval(petla, speed *100);
+        }
+        function petla(){
+            console.log("sd");
+            rysuj();
+        }
+        function rysuj(){
+            let gra = document.getElementById("gra");
+            if(!gra.innerHTML){
+            let do_druku ="";
+            for (var i = 0; i < plansza.length; i++) {
+                for (var j = 0; j < plansza[i].length; j++) {
+                    do_druku += "<div class='plytka' id='"+i+","+j+"'></div>";
+                }
+                do_druku+="<br>"
+            }
+            gra.innerHTML = do_druku;
+            }else{
+                document.
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="menu">
+        Rozmiar planszy:<br>
+        x: <input type="range" id="x" min="5" max="50" step="1" value="10" oninput="this.nextElementSibling.value = this.value"/><output>10</output><br>
+        y: <input type="range" id="y" min="5" max="50" step="1" value="9" oninput="this.nextElementSibling.value = this.value"/><output>9</output><br>
+
+        Szybkość:<br>
+        <input type="range" id="speed" min="1" max="5" step="1" value="4" oninput="this.nextElementSibling.value = this.value"/><output>4</output><br>
+
+        Tryb gry:<br>
+        <select id="tryb">
+        <option value="pusty">Pusta</option>
+        <option value="box">Box</option>
+        <option value="random">Random(WIP)</option>
+        <option value="wojna">Wojna(Ultra trudne)</option>
+        </select><br>
+
+        Wygląd:<br>
+        <select id="wyglad">
+            <option value="klasyczny">Klasyczny</option>
+            <option value="tecza">Teczowy</option>
+            <option value="kolor">Wybierz kolory</option>
+            <option value="obrazek">Importuj obrazki</option>
+            </select><br>
+        <input type="button" autofocus onclick="start()" value="start"/>
+    </form>
+    <div id="gra"></div>
+</body>
+</html>
