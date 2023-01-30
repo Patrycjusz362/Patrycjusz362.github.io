@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>topp</title>
     <style>
         body{
             background-image: url("topp.png");
@@ -13,16 +13,26 @@
         }
     </style>
     <script>
+        window.onclose = function(){
+            localStorage.setItem("XxX",0);
+        }
+        function openOnce(url, target){
+            var winref = window.open('', target, 'location=no,height=250,width=520,scrollbars=no,status=no,fullscreen=no,menubar=no,resizable=no,toolbar=no');
+            if(winref.location.href === 'about:blank'){
+                winref.location.href = url;
+            }
+            return winref;
+        }
+        let okno;
         function start(){
-            //petla();
+            okno = openOnce('./index.html', 'MyWindowName');
             window.setInterval(petla, 100);
         }
         function petla(){
-            let top = Math.floor(Math.random()*(window.innerHeight-200));
-            let left = Math.floor(Math.random()*window.innerWidth-500);
-            window.open("https://patrycjusz362.github.io/top","_blank", 'location=no,height=250,width=520,scrollbars=no,status=no,fullscreen=no,menubar=no,resizable=no,toolbar=no,top='+top+",left="+left);
+            let top = Math.floor((Math.random()*60)-30);
+            let left = Math.floor((Math.random()*60)-30);
+            okno.moveBy(top,left);
         }
-        
     </script>
 </head>
 <body id="body" onload="start()">
