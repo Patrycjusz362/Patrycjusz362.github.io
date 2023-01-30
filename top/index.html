@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>topp</title>
+    <title>Topp</title>
     <style>
         body{
             background-image: url("topp.png");
@@ -22,13 +22,8 @@
         }
         let okno;
         function start(){
-            okno = openOnce('./index.html', 'Topp');
-            window.setInterval(petla, 100);
-        }
-        function petla(){
-            let top = Math.floor((Math.random()*60)-30);
-            let left = Math.floor((Math.random()*60)-30);
-            okno.moveBy(top,left);
+            window.open('./topp.html', "Topp", 'location=no,height=250,width=520,scrollbars=no,status=no,fullscreen=no,menubar=no,resizable=no,toolbar=no');
+            window.close();
         }
     </script>
 </head>
