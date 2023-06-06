@@ -792,7 +792,7 @@
 					}, params.speed_map, function() {
 						view(monde);						
 						move_map_actually = false;
-						obj_conteneur.fadeIn('100');
+						obj_conteneur.fadeIn(0);
 						obj_wait.css('display', 'none');
 					});
 					
@@ -804,7 +804,7 @@
 						}, params.speed_map, function() {
 							view(monde);						
 							move_map_actually = false;
-							obj_conteneur.fadeIn('100');
+							obj_conteneur.fadeIn(0);
 							obj_wait.css('display', 'none');
 						});
 						
