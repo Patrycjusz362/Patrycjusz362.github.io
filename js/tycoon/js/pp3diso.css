@@ -1,0 +1,82 @@
+#pp3Diso-bulle{
+	z-index: 740000;
+	background-color: white;
+}
+
+
+
+
+
+/* ---------------------- animation d'attente de chargement ---------- */
+#pp3Diso-wait {
+	background-image: url(../images/wait.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	width:100%;
+	height:100%;
+}
+
+/* ------------------------------------------- */
+
+.pp3diso-sol {
+	width:1px;
+	height:1px;
+	display:block;
+	overflow:hidden;
+	position:absolute;
+}
+
+
+/* ------------------------------------------- */
+
+#ppISO {
+	border-top:10px solid #000;
+	border-bottom:10px solid #000;
+	position:fixed;
+	top: 0;
+  	left: 0;
+	margin:0px;
+	width:100%;
+	height:400px;
+	overflow:hidden;
+	background-color: black;
+}
+#pp3diso-win {
+	display:block;
+	padding:10px;
+}
+#pp3diso-close {
+	background-image: url(../images/close.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	width:16px;
+	height:16px;
+	position:absolute;
+	right:2px;
+	top:2px;
+	cursor:pointer;
+}
+
+.pp3diso-win-texte p {
+	font-size:14px;
+	margin:5px 0;
+	line-height:18px;
+}
+
+#pp3diso-win-form {
+	overflow:hidden;
+	margin:10px auto;
+}
+
+.pp3diso-win-button {
+	display:inline-block;
+	margin:0 20px;
+	border-radius:0px;
+	padding:4px 10px;
+	text-decoration:none;
+}
+
+#pp3diso_table{
+	border:0px;
+}
+
