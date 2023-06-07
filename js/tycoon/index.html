@@ -19,6 +19,7 @@
 </head>
 <body>
     <script>
+        
         var mapa = new Array(5);
 
 
@@ -44,9 +45,13 @@
 
         // koniec syfu do mapy ---------------------------------
         
-        
+        //window.AppInventor.setWebViewString("hi");
         
         $(document).ready(function(){
+            if(typeof window.AppInventor == "undefined"){
+                alert("twój postęp nie zostanie zapisany!");
+            }
+            
             ppmap = $("#ppISO").pp3Diso({ //podstawa
                 map: m, // the map
                 mapId: 1, // map id
@@ -79,38 +84,5 @@
 
     </script>
     <div id="ppISO"></div>
-    <div id="menu"> 
-        <table border="1px">
-            <tr id="pierwszyrzad">
-                <td id="pierwszaKolumna"><app-info id="gold"> </app-info></td>
-                <td><app-info id="diamonds"> </app-info></td>
-            </tr>
-            <tr id="drugirzad">
-                <td>
-                    <button id="sprzedaj" onclick="">Sprzedaj</button>
-                </td>
-                <td>
-                    <button onclick="">Sklep</button>
-                </td>
-            </tr>
-            <tr>
-                <td><p id="podglad"></p><br></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-    </div>
-    <div id="budowa" hidden>
-        Kliknij gdzie chcesz postawić zakupiony przedmiot
-        <button onclick="budowa = false">Anuluj</button>
-    </div>
-    
-    <div id="sklep" hidden>
-        <button onclick="sklep.zamknij()">Wyjście</button><br>
-    </div>
-    
 </body>
 </html>
