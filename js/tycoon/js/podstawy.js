@@ -64,5 +64,5 @@ function pokazObiekt(x,y){
 }
 
 function usunCursor(){
-    ppmap.cursor('images/cursor-on2.png', 'images/pusty.png', 0, 0);
+    ppmap.cursor('images/cursor.png', 'images/pusty.png', 0, 0);
 }
