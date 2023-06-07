@@ -33,8 +33,8 @@
 			PF_decy:0,
 			PF_max:false,
 			mousewheel:false,		// zoom avec la molette
-			zoom_min:0.05,
-			zoom_max:0.5,
+			zoom_min:0.01,
+			zoom_max:0.2,
 			zoom_pas:0.05,
 			fluide:true,			//--- on bouge la map de façon fluide ou pas
 			nbrTitleSetsSlide:1,		//-- nbr de tuiles avant de faire bouger la map
