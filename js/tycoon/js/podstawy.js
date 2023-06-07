@@ -27,7 +27,7 @@ function stworzRzeczyIObiekty(){
         }
     }
     
-    rzeczy.push(new Rzecz("Półka","Mała półka","polka","polka-1",0, -480,{}));
+    rzeczy.push(new Rzecz("Półka","Mała półka","polka","polka-1",0, -1024-(2*64),{}));
 }
 
 
