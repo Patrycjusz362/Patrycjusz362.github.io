@@ -1,63 +1,35 @@
 body{
-	background-color: gray;
+	background-color: black;
 	padding: 0px;
 }
 
-#menu {
-	border-bottom:10px solid #000;
-	position:fixed;
-	top: 420px;
-  	left: 0;
-	width: 100%;
-	height: 400px;
-	overflow: hidden;
-	background-color: #565656;
-}
-#sklep {
-	border-right:10px solid #000;
-	border-left:10px solid #000;
+#kasa {
+	font-size: 10vw;
+	z-index: 740000;
+	border: 10px solid black;
 	position:fixed;
 	top: 0;
-	width: 90%;
-	height: 100%;
-	overflow: scroll;
-	background-color: #7d7d7da7;
-}
-#budowa {
-	border-bottom:10px solid #000;
-	position:fixed;
-	top: 420px;
   	left: 0;
-	width: 100%;
-	height: 400px;
+	width: 95%;
 	overflow: hidden;
-	background-color: #565656;
+	background-color: black;
 }
-#zoom{
-	border:10px solid #000;
-	position:fixed;
-	top: 350px;
-  	left: 0;
-	width: 100px;
-	height: 50px;
-	overflow: hidden;
-	background-color: #565656;
+#coins{
+	border-right: 10px solid black;
+	float: left;
+	width: 40%;
+	background-color: yellow;
+}
+#diamonds{
+	float: left;
+	width: 40%;
+	background-color: aqua;
+}
+#opcje{
+	float: right;
+	padding: 0;
+	margin: 0;
+	max-width: 11%;
 }
 
-table{
-    width: 100%;
-    height: 100%;
-}
-#pierwszyrzad{
-    height: 20px;
-    background-color: #565656;
-}
-#drugirzad{
-    height: 20px;
-    background-color: #565656;
-    vertical-align: top;
-}
 
-#pierwszaKolumna{
-	width: 50%;
-}

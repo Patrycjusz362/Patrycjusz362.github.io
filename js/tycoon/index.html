@@ -19,8 +19,8 @@
 </head>
 <body>
     <script>
-        
-        var mapa = new Array(5);
+        let rozmiar = 20;
+        var mapa = new Array(rozmiar);
         var app_inventor_dotep = false;
 
         
@@ -55,7 +55,7 @@
         
         $(document).ready(function(){
             if(typeof window.AppInventor === "undefined"){
-                alert("twój postęp nie zostanie zapisany!");
+                //walert("twój postęp nie zostanie zapisany!");
             }else{
                 app_inventor_dotep = true;
                 window.AppInventor.setWebViewString("hi");
@@ -64,8 +64,8 @@
             ppmap = $("#ppISO").pp3Diso({ //podstawa
                 map: m, // the map
                 mapId: 1, // map id
-                tx: 2048, // x dimension of tiles
-                ty: 2048, // y dimension of tiles
+                tx: 512, // x dimension of tiles
+                ty: 512, // y dimension of tiles
                 auto_size: false,
                 drag: true,
                 zoom: 0.1,
@@ -91,12 +91,16 @@
             stworzRzeczyIObiekty();
             //ppmap.addObject(1, 1, 'images/sciana_szara_prawo1.png', 0, (-960*3)+242, "sciana");
             usunCursor();
-            postawObiekt(2,2,1);
         });
 
 
 
     </script>
+    <div id="kasa">
+        <div id="coins">9999</div>
+        <div id="diamonds">000</div>
+        <img id="opcje" src="images/gear.png"></img>
+    </div>
     <div id="ppISO"></div>
 </body>
 </html>

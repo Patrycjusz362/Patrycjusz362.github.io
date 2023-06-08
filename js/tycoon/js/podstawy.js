@@ -13,11 +13,13 @@ function Obiekt(id,x,y,rzecz){
     this.y = y;
     this.rzecz = structuredClone(rzecz);
 }
-
 var rzeczy = new Array();//itemy jakie można stawiać
-var obiekty = new Array(5+1);//obiekty na ziemi
+var obiekty;//obiekty na ziemi
+
 
 function stworzRzeczyIObiekty(){
+    obiekty = new Array(rozmiar+1);
+
     rzeczy.push(new Rzecz("pusto","pustka, nic tu nie ma","pusto","pusty",0,0,{}));//rzeczy[0] jest zarezerwowane dla pustego pola
     
     for(var i = 1; i < obiekty.length; i++){
@@ -26,7 +28,7 @@ function stworzRzeczyIObiekty(){
             obiekty[i][j] = new Obiekt(ppmap.addObject(i, j, rzeczy[0].png, rzeczy[0].decx, rzeczy[0].decy, rzeczy[0].typ),i,j,rzeczy[0]);
         }
     }
-    
+    //-----------------------------------------------------------------------
     rzeczy.push(new Rzecz("Półka","Mała półka","polka","polka-1",0, -1024-(2*64),{}));
 }
 

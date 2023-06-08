@@ -1521,11 +1521,14 @@
 					}
 				}
 				
-				if(zone[y][x] == 1 && ok) {
-					return true;
-				}else{
-					return false;
-				}
+				if(typeof zone[y] != 'undefined'){
+				if(typeof zone[y][x] != 'undefined'){
+					if(zone[y][x] == 1 && ok) {
+						return true;
+					}else{
+						return false;
+					}
+				}}
 			}
 		}
 		
@@ -1647,13 +1650,14 @@
 			var y = infos[1];
 			
 			obj_tip.css('display', 'none');
-			if(typeof zone[y][x] != 'undefined'){
+			//if(typeof zone[y] != 'undefined'){
+			//if(typeof zone[y][x] != 'undefined'){
 				if(zone[y][x] == 2) {	// --- il y a un batiment ici
 					params.onclicbuilding(x, y, params.mapId);
 				}else if(objetIsOnCase(x, y)) {	// --- il y a un objet ici
 					params.onclicobject(x, y, params.mapId);
 				}
-			}
+			//}}
 			if(ifPossible(x, y)) {
 				moveAvatar(x, y, true);
 			}
